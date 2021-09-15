@@ -26,6 +26,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'spina', '~> 2.0.0'
   spec.add_dependency 'spina-admin-conferences', '~> 2.1.0'
   spec.add_dependency 'spina-admin-journal', '~> 0.6.0'
+  spec.add_dependency 'spina-admin-conferences-accounts', '~> 0.1.0'
 
   spec.add_development_dependency 'capybara', '~> 3.33'
   spec.add_development_dependency 'dotenv-rails', '~> 2.7'
