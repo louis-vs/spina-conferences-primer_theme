@@ -8,4 +8,9 @@
         = render partial: 'mobile_navigation_items'
     = render partial: 'navigation_item', collection: main_navigation_items, cache: -> navigation_item { [navigation_item, navigation_item.children] }
     .Header-item.d-none.d-lg-flex= link_to 'Journal', frontend_issues_path, class: %w[Header-link]
-    .Header-item.d-none.d-lg-flex= link_to 'Conferences', frontend_conferences_path, class: %w[Header-link]
+    .Header-item.Header-item--full.d-none.d-lg-flex= link_to 'Conferences', frontend_conferences_path, class: %w[Header-link]
+    - if frontend_public_user_signed_in?
+      .Header-item.d-none.d-lg-flex= link_to 'My account', edit_frontend_public_user_registration_path, class: %w[Header-link]
+    - else
+      .Header-item.d-none.d-lg-flex= link_to 'Login', new_frontend_public_user_session_path, class: %w[Header-link]
+      .Header-item.d-none.d-lg-flex= link_to 'Sign up', new_frontend_public_user_registration_path, class: %w[Header-link]

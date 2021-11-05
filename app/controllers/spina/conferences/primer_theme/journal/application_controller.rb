@@ -5,7 +5,7 @@ module Spina
     module PrimerTheme
       module Journal
         # Base class from which controllers related to the journal plugin inherit
-        class ApplicationController < Spina::ApplicationController
+        class ApplicationController < Spina::Conferences::PrimerTheme::ApplicationController
         end
       end
     end
