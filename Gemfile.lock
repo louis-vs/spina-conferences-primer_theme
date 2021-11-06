@@ -8,7 +8,7 @@ PATH
       primer_view_components (= 0.0.37)
       rails (~> 6.0)
       spina (~> 2.0.0)
-      spina-admin-conferences (~> 2.1.0)
+      spina-admin-conferences (>= 2.1, < 2.3)
       spina-admin-journal (~> 0.6.0)
 
 GEM
@@ -137,7 +137,7 @@ GEM
       concurrent-ruby (~> 1.0)
     icalendar (2.7.1)
       ice_cube (~> 0.16)
-    ice_cube (0.16.3)
+    ice_cube (0.16.4)
     image_processing (1.12.1)
       mini_magick (>= 4.9.5, < 5)
       ruby-vips (>= 2.0.17, < 3)
@@ -236,7 +236,7 @@ GEM
       thor (~> 1.0)
     rainbow (3.0.0)
     rake (13.0.6)
-    redis (4.4.0)
+    redis (4.5.1)
     regexp_parser (2.1.1)
     request_store (1.5.0)
       rack (>= 1.4)
@@ -303,7 +303,7 @@ GEM
       rails (>= 6.0)
       sass-rails
       turbolinks (~> 5)
-    spina-admin-conferences (2.1.0)
+    spina-admin-conferences (2.2.0)
       icalendar (~> 2.5)
       mobility-actiontext (= 0.2.0)
       rails (~> 6.0)
