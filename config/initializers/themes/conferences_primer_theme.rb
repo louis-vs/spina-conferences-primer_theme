@@ -288,5 +288,5 @@
     label: 'Footer'
   }]
 
-  theme.plugins = %w[conferences journal]
+  theme.plugins = %w[conferences journal conferences-blog]
 end

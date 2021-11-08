@@ -190,6 +190,18 @@ en:
               issue: Issue
               draft: THIS ARTICLE IS A DRAFT
               licence_logo: Licence logo
+        blog:
+          posts:
+            post:
+              category_html: "Category: %{name}"
+          categories:
+            show:
+              category: "Category: %{name}"
+          shared:
+            siebar:
+              categories: Categories
+
+
 
   languages:
     en-GB: British English

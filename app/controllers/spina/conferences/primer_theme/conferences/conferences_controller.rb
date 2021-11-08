@@ -58,7 +58,7 @@ module Spina
           end
 
           def set_breadcrumb
-            add_breadcrumb Admin::Conferences::Conference.model_name.human.pluralize, frontend_conferences_path
+            add_breadcrumb 'Blog', frontend_conferences_path
           end
 
           def set_metadata

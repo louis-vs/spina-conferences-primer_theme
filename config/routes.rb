@@ -14,4 +14,18 @@ Spina::Engine.routes.draw do
       resources :articles, only: %i[show]
     end
   end
+
+  namespace :frontend, as: 'frontend_blog', path: 'blog', module: 'conferences/primer_theme/blog' do
+    root to: 'posts#index'
+
+    get ':id', to: 'posts#show', as: :post
+
+    # Redirects for old sites that used the old blog path
+    get 'posts/', to: redirect('/blog'), as: :old_index
+    get 'posts/:id', to: redirect('/blog/%{id}'), as: :old_post
+
+    get 'feed.atom', to: 'posts#index', as: :rss_feed, defaults: { format: :atom }
+    get 'categories/:id', to: 'categories#show', as: :category
+    get 'archive/:year(/:month)', to: 'posts#archive', as: :archive_posts
+  end
 end
