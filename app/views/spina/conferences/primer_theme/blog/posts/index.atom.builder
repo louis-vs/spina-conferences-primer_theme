@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-atom_feed language: 'en-GB', url: spina.blog_root_url do |feed|
+atom_feed language: 'en-GB', url: spina.frontend_blog_root_url do |feed|
   feed.title('Blog')
   feed.updated(@posts[0].created_at) unless @posts.empty?
 
   @posts.each do |post|
-    feed.entry(post, published: post.published_at, url: spina.blog_post_url(post)) do |entry|
+    feed.entry(post, published: post.published_at, url: spina.frontend_blog_post_url(post)) do |entry|
       entry.title(post.title)
       entry.content(post.content, type: 'html')
 

@@ -1,3 +1,11 @@
-%h1 Blog
+= render(Primer::HeadingComponent.new) do
+  Blog
 
-%ul.posts= render collection: @posts, partial: 'post'
+= render(Primer::FlexComponent.new(flex: :auto, direction: [:column, nil, :row, nil])) do
+  = render(Primer::FlexItemComponent.new(flex_auto: true)) do
+    - if @posts.any?
+      %ul= render collection: @posts, partial: 'post', layout: 'list_item', cached: true
+    - else
+      = render Primer::BlankslateComponent.new(title: t(:'.no_posts'), icon: 'mortar-board')
+  = render 'spina/conferences/primer_theme/blog/shared/sidebar'
+

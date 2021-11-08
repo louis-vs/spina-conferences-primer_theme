@@ -11,8 +11,12 @@ module Spina
           before_action :page
           before_action :category
           before_action :posts
+          before_action :set_breadcrumb, only: :show
 
-          def show; end
+          def show
+            add_breadcrumb t('.category', name: @category.name)
+            render layout: theme_layout
+          end
 
           private
 
@@ -30,6 +34,10 @@ module Spina
               page.link_url = '/blog'
               page.deletable = false
             end
+          end
+
+          def set_breadcrumb
+            add_breadcrumb 'Blog', frontend_blog_root_path
           end
         end
       end

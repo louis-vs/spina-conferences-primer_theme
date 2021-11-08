@@ -5,11 +5,12 @@ module Spina
     module PrimerTheme
       module Blog
         # Spina::Blog::PostsController
-        class PostsController < ::Spina::ApplicationController
+        class PostsController < ApplicationController
           include ::Spina::Frontend
 
           before_action :find_posts, only: [:index]
           before_action :current_spina_user_can_view_page?
+          before_action :set_breadcrumb, only: :show
 
           decorates_assigned :posts, :post
 
@@ -24,6 +25,8 @@ module Spina
 
           def show
             @post = Spina::Admin::Conferences::Blog::Post.friendly.find params[:id]
+            set_metadata
+            add_breadcrumb @post.title
             render layout: theme_layout
           rescue ActiveRecord::RecordNotFound
             try_redirect
@@ -48,10 +51,6 @@ module Spina
             start_date.end_of_year
           end
 
-          def theme_layout
-            "#{current_theme.name.parameterize.underscore}/application"
-          end
-
           def page
             @page ||= Spina::Page.find_or_create_by name: 'blog' do |page|
               page.title = 'Blog'
@@ -72,6 +71,15 @@ module Spina
 
           def current_spina_user_can_view_page?
             raise ActiveRecord::RecordNotFound unless current_spina_user.present? || page.live?
+          end
+
+          def set_breadcrumb
+            add_breadcrumb 'Blog', frontend_blog_root_path
+          end
+
+          def set_metadata
+            @title = @post.seo_title || @post.title
+            @description = @post.description
           end
         end
       end

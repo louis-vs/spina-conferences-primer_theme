@@ -1,3 +1,10 @@
-%li{class: dom_class(post), id: dom_id(post)}
-  %h3= link_to post.title, frontend_blog_post_path(post)
-  != post.excerpt
+-#%li{class: dom_class(post), id: dom_id(post)}
+
+= render(Primer::HeadingComponent.new(tag: :h3, mb: 1)) do
+  = link_to post.title, frontend_blog_post_path(post)
+= render(Primer::HeadingComponent.new(tag: :h4)) do
+  = time_tag post.published_at, format: :ordinal_datetime_with_year
+= render(Primer::MarkdownComponent.new(color: :text_secondary)) do
+  = post.excerpt.html_safe
+= render(Primer::TextComponent.new(tag: :div, color: :text_secondary)) do
+  = t '.category_html', name: link_to(post.category.name, frontend_blog_category_path(post.category))
