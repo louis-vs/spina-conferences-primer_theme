@@ -12,6 +12,7 @@ module Spina
           before_action :category
           before_action :posts
           before_action :set_breadcrumb, only: :show
+          before_action :set_metadata
 
           def show
             add_breadcrumb t('.category', name: @category.name)
@@ -38,6 +39,10 @@ module Spina
 
           def set_breadcrumb
             add_breadcrumb 'Blog', frontend_blog_root_path
+          end
+
+          def set_metadata
+            @title = @category.name
           end
         end
       end

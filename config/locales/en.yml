@@ -192,6 +192,8 @@ en:
               licence_logo: Licence logo
         blog:
           posts:
+            index:
+              blog: Blog
             post:
               category_html: "Category: %{name}"
           categories:

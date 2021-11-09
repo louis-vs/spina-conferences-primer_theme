@@ -17,6 +17,8 @@ module Spina
           def index
             @posts = @posts.unscope(where: :draft) if current_spina_user&.admin?
 
+            @title = t('.blog')
+
             respond_to do |format|
               format.atom
               format.html { render layout: theme_layout }
@@ -78,7 +80,7 @@ module Spina
           end
 
           def set_metadata
-            @title = @post.seo_title || @post.title
+            @title = @post.seo_title.blank? ? @post.title : @post.seo_title
             @description = @post.description
           end
         end
