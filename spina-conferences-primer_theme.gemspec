@@ -16,6 +16,8 @@ Gem::Specification.new do |spec|
   spec.description = 'Frontend for Spina::Admin::Conferences plugin, based on Primer.'
   spec.license = 'MIT'
 
+  spec.metadata['rubygems_mfa_required'] = 'true'
+
   spec.files = Dir['{app,config,db,lib}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.md']
 
   spec.add_dependency 'babel-transpiler', '~> 0.7'
