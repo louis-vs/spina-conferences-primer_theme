@@ -1,8 +1,16 @@
+// for some godforsaken reason, adding these two function definitions that I found on the internet
+// prevents the compilation error "Error: "var(--Layout-row-gap)" is not a number for `max'"
+@function max($numbers...)
+  @return m#{a}x(#{$numbers})
+
+@function min($numbers...)
+  @return m#{i}n(#{$numbers})
+
+@import "@primer/css/index.scss"
 @import "@github/details-dialog-element/dist"
 
 @import spina/conferences/primer_theme/custom
-@import "@primer/css"
-@import "@primer/octicons"
+@import "@primer/octicons/index.scss"
 @import spina/conferences/primer_theme/custom_variables
 
 @font-face
