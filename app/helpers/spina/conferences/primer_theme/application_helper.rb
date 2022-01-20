@@ -15,11 +15,11 @@ module Spina
         def ancestors
           return [] if current_page.blank?
 
-          render Primer::BreadcrumbComponent.new(mb: 4) do |component|
+          render Primer::Beta::Breadcrumbs.new(mb: 4) do |component|
             current_page.ancestors.each do |ancestor|
               component.item(href: ancestor.materialized_path) { ancestor.menu_title }
             end
-            component.item(selected: true) { current_page.menu_title }
+            component.item(href: current_page.materialized_path) { current_page.menu_title }
           end
         end
 

@@ -2,12 +2,12 @@
   = render(Primer::FlexItemComponent.new(flex_auto: true)) do
     = render(Primer::HeadingComponent.new(tag: :h3, mb: 1)) do
       = link_to article.title, frontend_issue_article_path(article.issue, article)
-    = render(Primer::TextComponent.new(tag: :div, color: :text_secondary)) do
+    = render(Primer::Beta::Text.new(tag: :div, color: :muted)) do
       = render(Primer::OcticonComponent.new(article.affiliations.many? ? 'people' : 'person'))
       = render(Primer::BaseComponent.new(tag: :address, display: :inline)) do
         = article.authorships.sorted_within_article.collect { |authorship| authorship.affiliation.name }.to_sentence
     - unless article.doi.blank?
-      = render(Primer::TextComponent.new(tag: :div, color: :text_secondary)) do
+      = render(Primer::Beta::Text.new(tag: :div, color: :muted)) do
         = link_to nil, article.doi
     - if article.has_content?(:attachment)
       = render(Primer::ButtonComponent.new(tag: :a, href: frontend_issue_article_path(article.issue, article, format: :pdf), mt: 2, download: '')) do

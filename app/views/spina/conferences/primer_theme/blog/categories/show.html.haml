@@ -1,4 +1,4 @@
-= render(Primer::HeadingComponent.new) do
+= render(Primer::HeadingComponent.new(tag: :h1)) do
   Blog
 = render(Primer::HeadingComponent.new(tag: :h2)) do
   = t '.category', name: @category.name

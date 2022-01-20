@@ -8,10 +8,10 @@
                   volume_number: issue.volume.number,
                   issue_number: issue.number), frontend_issue_path(issue)
     - unless issue.title.blank?
-      = render(Primer::HeadingComponent.new(tag: :h4, color: :text_secondary, mb: 1)) do
+      = render(Primer::HeadingComponent.new(tag: :h4, color: :muted, mb: 1)) do
         = issue.title
-    = render(Primer::TextComponent.new(tag: :div, color: :text_secondary, font_weight: :bold)) do
+    = render(Primer::Beta::Text.new(tag: :div, color: :muted, font_weight: :bold)) do
       = time_tag issue.date, format: :long
     - if issue.has_content?(:description)
-      = render(Primer::TextComponent.new(tag: :div, color: :text_secondary, mt: 2)) do
+      = render(Primer::Beta::Text.new(tag: :div, color: :muted, mt: 2)) do
         = issue.content.html(:description)

@@ -4,15 +4,15 @@
 - content_for(:header) { render 'header' }
 
 = turbo_frame_tag 'conference_tabs' do
-  = render Primer::UnderlineNavComponent.new(label: t(:'.conference_navigation')) do |component|
+  = render Primer::Alpha::UnderlineNav.new(tag: :div, label: t(:'.conference_navigation')) do |component|
     - component.tab(href: frontend_conference_path(@conference, tab: 'information', presentation_type: @presentation_type&.id),
-                    aria: { selected: (@tab == 'information').to_s }, classes: 'UnderlineNav-item', role: 'tab') do
+                    selected: (@tab == 'information'), id: 'information') do
       = t(:'.tabs.information')
     - component.tab(href: frontend_conference_path(@conference, tab: 'presentations', presentation_type: @presentation_type&.id),
-                    aria: { selected: (@tab == 'presentations').to_s }, classes: 'UnderlineNav-item', role: 'tab') do
+                    selected: (@tab == 'presentations'), id: 'presentations') do
       = t(:'.tabs.presentations')
     - component.tab(href: frontend_conference_path(@conference, tab: 'events', presentation_type: @presentation_type&.id),
-                    aria: { selected: (@tab == 'events').to_s }, classes: 'UnderlineNav-item', role: 'tab') do
+                    selected: (@tab == 'events'), id: 'events') do
       = t(:'.tabs.events')
     - component.actions do
       = render Primer::ButtonComponent.new(tag: :a, href: frontend_conference_url(@conference, protocol: :webcal, format: :ics),
@@ -23,7 +23,7 @@
     - when 'information'
       - cache [@conference, @tab] do
         - if @conference.content(:text).present?
-          = render(Primer::MarkdownComponent.new(my: 4)) { @conference.content.html(:text) }
+          = render(Primer::Markdown.new(my: 4)) { @conference.content.html(:text) }
         - else
           = render Primer::BlankslateComponent.new(title: t(:'.no_information'), icon: 'info', my: 4)
     - when 'presentations'

@@ -194,13 +194,14 @@ en:
           posts:
             index:
               blog: Blog
+              no_posts: There are no posts.
             post:
               category_html: "Category: %{name}"
           categories:
             show:
               category: "Category: %{name}"
           shared:
-            siebar:
+            sidebar:
               categories: Categories
 
 
