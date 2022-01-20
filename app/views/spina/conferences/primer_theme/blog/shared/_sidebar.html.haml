@@ -3,7 +3,7 @@
     = render(Primer::HeadingComponent.new(tag: :h3)) do
       = t '.categories'
   - sidebar.row do
-    = render(Primer::MarkdownComponent.new(tag: :div, font_weight: :bold)) do
+    = render(Primer::Markdown.new(tag: :div, font_weight: :bold)) do
       %ul
         - Spina::Admin::Conferences::Blog::Category.all.each do |cat|
           %li= link_to cat.name, frontend_blog_category_path(cat)

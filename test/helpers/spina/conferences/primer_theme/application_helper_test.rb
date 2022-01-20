@@ -27,18 +27,18 @@ module Spina
           assert_empty ancestors
           Current.page = spina_pages(:about)
           assert_equal <<~HTML.strip, ancestors
-            <nav aria-label="Breadcrumb" class="mb-4">
+            <nav aria-label="Breadcrumb" data-view-component="true" class="mb-4">
               <ol>
-                  <li aria-current="page" class="breadcrumb-item  ">About</li>
+                  <li data-view-component="true" class="breadcrumb-item  breadcrumb-item-selected"><a aria-current="page" href="/about" data-view-component="true">About</a></li>
               </ol>
             </nav>
           HTML
           Current.page = spina_pages(:page_with_ancestor)
           assert_equal <<~HTML.strip, ancestors
-            <nav aria-label="Breadcrumb" class="mb-4">
+            <nav aria-label="Breadcrumb" data-view-component="true" class="mb-4">
               <ol>
-                  <li class="breadcrumb-item  "><a href="/blank">Blank</a></li>
-                  <li aria-current="page" class="breadcrumb-item  ">Page with ancestor</li>
+                  <li data-view-component="true" class="breadcrumb-item "><a href="/blank" data-view-component="true">Blank</a></li>
+                  <li data-view-component="true" class="breadcrumb-item  breadcrumb-item-selected"><a aria-current="page" href="/page-with-ancestor" data-view-component="true">Page with ancestor</a></li>
               </ol>
             </nav>
           HTML

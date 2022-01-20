@@ -1,5 +1,5 @@
 - cache current_page do
-  = render(Primer::HeadingComponent.new) { current_page.title }
+  = render(Primer::HeadingComponent.new(tag: :h1)) { current_page.title }
 
   - if content(:text).present?
-    = render(Primer::MarkdownComponent.new(mt: 4)) { content.html(:text) }
+    = render(Primer::Markdown.new(mt: 4)) { content.html(:text) }

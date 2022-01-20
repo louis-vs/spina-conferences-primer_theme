@@ -1,18 +1,18 @@
 - cache [@issue, @issue.volume, @issue.articles, @issue.content(:cover_img), @issue.content(:description)] do
   - cache [@issue, @issue.volume] do
-    = render(Primer::HeadingComponent.new) do
+    = render(Primer::HeadingComponent.new(tag: :h1)) do
       = t('spina.conferences.primer_theme.journal.volume_issue',
           volume_number: @issue.volume.number,
           issue_number: @issue.number)
 
     - unless @issue.title.blank?
-      = render(Primer::HeadingComponent.new(tag: :h2, color: :text_secondary, mb: 2)) { @issue.title }
+      = render(Primer::HeadingComponent.new(tag: :h2, color: :muted, mb: 2)) { @issue.title }
 
   - if @issue.has_content?(:cover_img)
     = render partial: 'issue_cover', locals: { issue: @issue, cover_img: @issue.content(:cover_img), size: [300, 600] }
 
   - if @issue.has_content?(:description)
-    = render(Primer::MarkdownComponent.new(my: 4)) do
+    = render(Primer::Markdown.new(my: 4)) do
       = @issue.content.html(:description)
 
   - if @issue.has_content?(:attachment)

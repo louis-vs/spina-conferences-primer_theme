@@ -13,7 +13,7 @@
         = render(Primer::HeadingComponent.new(tag: :h1, classes: 'h000-mktg lh-condensed-ultra')) do
           = item.content(:title)
       %div{ style: 'text-shadow: 0 1px 1px rgba(var(--color-scale-black), 0.25), 0 1px 25px rgba(var(--color-scale-black), 0.75);' }
-        = render(Primer::MarkdownComponent.new(my: 4)) do
+        = render(Primer::Markdown.new(my: 4)) do
           = item.content(:description).html_safe
       - if item.content(:url).present?
         = link_to t('.more_info'), item.content(:url),

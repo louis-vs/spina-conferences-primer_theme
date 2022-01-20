@@ -9,7 +9,7 @@
             = render partial: 'conferences_primer_theme/partials/homepage_item', locals: { item: carousel_item }
           - if content(:carousel).many?
             .container-lg.height-full.d-flex.flex-column-reverse.mb-8{ style: 'z-index: 5' }
-              = render(Primer::ButtonGroupComponent.new) do |component|
+              = render(Primer::ButtonGroup.new) do |component|
                 = component.button(data: { action: :'slideshow#previous' }) do
                   = render Primer::OcticonComponent.new('arrow-left')
                 = component.button(data: { action: :'slideshow#next' }) do

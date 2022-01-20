@@ -5,7 +5,7 @@
         .subnav.subnav-flush
           .subnav-search.float-left.ml-0
             = search_field_tag 'search', nil, class: %w[form-control subnav-search-input], aria: { label: t(:'.search') }
-            = octicon 'search', class: 'subnav-search-icon'
+            = render Primer::OcticonComponent.new('search', class: 'subnav-search-icon')
     %div{ id: 'event_list' }
       - if events.any?
         %ul{ data: { filter: { list: true } } }

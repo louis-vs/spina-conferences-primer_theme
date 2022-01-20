@@ -1,6 +1,6 @@
 - cache [@conference, @conference.institutions] do
   .container-lg.p-responsive.mb-4
-    = render(Primer::HeadingComponent.new( mb: [1, nil, 2, nil])) { @conference.name }
+    = render(Primer::HeadingComponent.new(tag: :h1, mb: [1, nil, 2, nil])) { @conference.name }
     %ul.text-secondary.list-style-none.d-flex.flex-column.flex-sm-row.flex-wrap
       %li.mr-sm-3.mb-1
         = render Primer::OcticonComponent.new('calendar')
