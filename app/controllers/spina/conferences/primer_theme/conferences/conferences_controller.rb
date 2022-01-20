@@ -6,7 +6,8 @@ module Spina
       module Conferences
         # User-facing controller for conferences, serving both html and ics
         class ConferencesController < ApplicationController
-          before_action :set_conference, :set_tab, :set_presentation_type, :set_presentations, :set_breadcrumb, only: :show
+          before_action :set_conference, :set_tab, :set_presentation_type, :set_presentations, :set_breadcrumb,
+                        only: :show
           before_action :set_metadata
 
           def index
@@ -30,7 +31,7 @@ module Spina
           def set_conference
             @conference = Admin::Conferences::Conference.includes(:events, :institutions,
                                                                   presentation_types: [:translations],
-                                                                  presentations: [session: [:room], presenters: [:institution]])
+                                                                  presentations: [session: [:room], presenters: [:institution]]) # rubocop:disable Layout/LineLength
                                                         .find(params[:id])
             @conference.view_context = view_context
           rescue ActiveRecord::RecordNotFound
@@ -42,19 +43,19 @@ module Spina
           end
 
           def set_presentation_type
-            if params[:presentation_type].present?
-              @presentation_type = @conference.presentation_types
-                                              .includes(presentations: [session: [:room], presenters: [:institution]])
-                                              .find(params[:presentation_type])
-            end
+            return if params[:presentation_type].blank?
+
+            @presentation_type = @conference.presentation_types
+                                            .includes(presentations: [session: [:room], presenters: [:institution]])
+                                            .find(params[:presentation_type])
           end
 
           def set_presentations
             @presentations = if @presentation_type.present?
-                              @presentation_type.presentations.page(params[:page]).per(15)
-                            else
-                              @conference.presentations.page(params[:page]).per(15)
-                            end
+                               @presentation_type.presentations.page(params[:page]).per(15)
+                             else
+                               @conference.presentations.page(params[:page]).per(15)
+                             end
           end
 
           def set_breadcrumb
@@ -63,7 +64,7 @@ module Spina
 
           def set_metadata
             @title = @conference.present? ? @conference.name : Admin::Conferences::Conference.model_name.human(count: 0)
-            @description = @conference.present? && @conference.has_content?(:text) ? helpers.strip_tags(@conference.content(:text)) : ''
+            @description = @conference.present? && @conference.has_content?(:text) ? helpers.strip_tags(@conference.content(:text)) : '' # rubocop:disable Layout/LineLength
           end
         end
       end

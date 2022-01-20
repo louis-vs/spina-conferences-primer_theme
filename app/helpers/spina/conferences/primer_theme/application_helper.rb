@@ -9,7 +9,7 @@ module Spina
 
         # Because the upper bound is exclusive a conference is current the day after it ends
         def current_conference
-          Spina::Admin::Conferences::Conference.order(dates: :asc).find_by('upper(dates) >= ?', Date.today)
+          Spina::Admin::Conferences::Conference.order(dates: :asc).find_by('upper(dates) >= ?', Time.zone.today)
         end
 
         def ancestors
@@ -23,20 +23,20 @@ module Spina
           end
         end
 
-        def calendar(name:)
+        def calendar(name:, &block)
           Icalendar::Calendar.new
-                              .tap { |calendar| calendar.x_wr_calname = name }
-                              .tap { |calendar| yield(calendar) }
-                              .tap(&:publish)
-                              .then(&:to_ical)
+                             .tap { |calendar| calendar.x_wr_calname = name }
+                             .tap(&block)
+                             .tap(&:publish)
+                             .then(&:to_ical)
         end
 
         def generate_datetime(date, time)
-          Time.new(date.year,
-                   date.month,
-                   date.day,
-                   time.hour,
-                   time.min)
+          Time.zone.local(date.year,
+                          date.month,
+                          date.day,
+                          time.hour,
+                          time.min)
         end
       end
     end

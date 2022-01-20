@@ -16,7 +16,9 @@ module Spina
         private
 
         def live_navigation_items(name)
-          ::Spina::NavigationItem.joins(:navigation).where(spina_navigations: { name: name }).roots.regular_pages.in_menu.live.sorted
+          ::Spina::NavigationItem.joins(:navigation)
+                                 .where(spina_navigations: { name: name })
+                                 .roots.regular_pages.in_menu.live.sorted
         end
       end
     end

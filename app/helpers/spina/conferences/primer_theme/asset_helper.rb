@@ -27,7 +27,9 @@ module Spina
         DEFAULT_FACTORS = [1, 2, 3, 4].freeze
 
         def variants_for(image, variant_options:, factors:)
-          factors.inject({}) { |srcset, factor| srcset.update(variant_url(image, variant_options, factor) => "#{factor}x") }
+          factors.inject({}) do |srcset, factor|
+            srcset.update(variant_url(image, variant_options, factor) => "#{factor}x")
+          end
         end
 
         def variant_url(image, variant_options, factor)
@@ -39,7 +41,13 @@ module Spina
         end
 
         def resize_dimensions_for_key(key, factor, dimensions)
-          METHODS_TO_RESIZE.include?(key) ? dimensions.collect { |dimension| resize_dimension(dimension, factor) } : dimensions
+          if METHODS_TO_RESIZE.include?(key)
+            dimensions.collect do |dimension|
+              resize_dimension(dimension, factor)
+            end
+          else
+            dimensions
+          end
         end
 
         def resize_dimension(dimension = 0, factor = 0)

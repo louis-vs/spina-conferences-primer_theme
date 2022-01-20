@@ -36,9 +36,9 @@ module Spina
 
           def archive
             @posts = Spina::Admin::Conferences::Blog::Post.live
-                                      .where(published_at: start_date..end_date)
-                                      .order(published_at: :desc)
-                                      .page(params[:page])
+                                                          .where(published_at: start_date..end_date)
+                                                          .order(published_at: :desc)
+                                                          .page(params[:page])
 
             render layout: theme_layout
           end
@@ -63,7 +63,7 @@ module Spina
 
           def find_posts
             @posts = Spina::Admin::Conferences::Blog::Post.available.live.order(published_at: :desc)
-                                      .page(params[:page])
+                                                          .page(params[:page])
           end
 
           def try_redirect
@@ -80,7 +80,7 @@ module Spina
           end
 
           def set_metadata
-            @title = @post.seo_title.blank? ? @post.title : @post.seo_title
+            @title = @post.seo_title.presence || @post.title
             @description = @post.description
           end
         end

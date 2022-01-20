@@ -31,7 +31,7 @@ Minitest.backtrace_filter = Minitest::BacktraceFilter.new
 if ActiveSupport::TestCase.respond_to?(:fixture_path=)
   ActiveSupport::TestCase.fixture_path = File.expand_path('fixtures', __dir__)
   ActionDispatch::IntegrationTest.fixture_path = ActiveSupport::TestCase.fixture_path
-  ActiveSupport::TestCase.file_fixture_path = ActiveSupport::TestCase.fixture_path + '/files'
+  ActiveSupport::TestCase.file_fixture_path = "#{ActiveSupport::TestCase.fixture_path}/files"
   ActiveSupport::TestCase.fixtures :all
 end
 
@@ -45,7 +45,7 @@ module ActiveSupport
       SimpleCov.result
     end
 
-    setup { I18n.locale = I18n.default_locale }
+    setup { I18n.locale = I18n.default_locale } # rubocop:disable Rails/I18nLocaleAssignment
   end
 end
 
@@ -81,7 +81,7 @@ module CustomAssertions
   def in_locales(*locales, include_default: true)
     yield if include_default
     locales.each do |locale|
-      I18n.locale = locale
+      I18n.locale = locale # rubocop:disable Rails/I18nLocaleAssignment
       yield
     end
   end

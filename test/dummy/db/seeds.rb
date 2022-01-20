@@ -18,7 +18,8 @@ module Spina
                       { building: 'Medical school', number: 'G.16', institution: university_of_shangri_la }]
       uoa_conference, uos_conference =
         Conference.create! [{ start_date: '2017-04-07', finish_date: '2017-04-09', name: 'University of Atlantis 2017' },
-                            { start_date: '2018-04-09', finish_date: '2018-04-11', name: 'University of Shangri-La 2018' }]
+                            { start_date: '2018-04-09', finish_date: '2018-04-11',
+                              name: 'University of Shangri-La 2018' }]
       _plenary1, _poster1, talk1, _plenary2, _poster2, _talk2 =
         PresentationType.create! [{ name: 'Plenary', minutes: 80, conference: uoa_conference },
                                   { name: 'Poster', minutes: 30, conference: uoa_conference },
@@ -50,23 +51,23 @@ module Spina
                                                 { volume: vol1, number: 2, date: '2020-12-25' }]
       vol2_issue1, vol2_issue2 = Issue.create! [{ volume: vol2, number: 1, date: '2020-12-25' },
                                                 { volume: vol2, number: 2, date: '2020-12-25' }]
-      vol1_issue1_article1, vol1_issue1_article2 = Article.create! [{ issue: vol1_issue1, number: 1, title: 'Test title' }, # rubocop:disable Layout/LineLength
-                                                                    { issue: vol1_issue1, number: 2, title: 'Test title' }] # rubocop:disable Layout/LineLength
-      vol1_issue2_article1, vol1_issue2_article2 = Article.create! [{ issue: vol1_issue2, number: 1, title: 'Test title' }, # rubocop:disable Layout/LineLength
-                                                                    { issue: vol1_issue2, number: 2, title: 'Test title' }] # rubocop:disable Layout/LineLength
-      vol2_issue1_article1, vol2_issue1_article2 = Article.create! [{ issue: vol2_issue1, number: 1, title: 'Test title' }, # rubocop:disable Layout/LineLength
-                                                                    { issue: vol2_issue1, number: 2, title: 'Test title' }] # rubocop:disable Layout/LineLength
-      vol2_issue2_article1, vol2_issue2_article2 = Article.create! [{ issue: vol2_issue2, number: 1, title: 'Test title' }, # rubocop:disable Layout/LineLength
-                                                                    { issue: vol2_issue2, number: 2, title: 'Test title' }] # rubocop:disable Layout/LineLength
+      vol1_issue1_article1, vol1_issue1_article2 = Article.create! [{ issue: vol1_issue1, number: 1, title: 'Test title' },
+                                                                    { issue: vol1_issue1, number: 2, title: 'Test title' }]
+      vol1_issue2_article1, vol1_issue2_article2 = Article.create! [{ issue: vol1_issue2, number: 1, title: 'Test title' },
+                                                                    { issue: vol1_issue2, number: 2, title: 'Test title' }]
+      vol2_issue1_article1, vol2_issue1_article2 = Article.create! [{ issue: vol2_issue1, number: 1, title: 'Test title' },
+                                                                    { issue: vol2_issue1, number: 2, title: 'Test title' }]
+      vol2_issue2_article1, vol2_issue2_article2 = Article.create! [{ issue: vol2_issue2, number: 1, title: 'Test title' },
+                                                                    { issue: vol2_issue2, number: 2, title: 'Test title' }]
       institution_country_house, institution_jordan_college = Institution.create! [{ name: 'Country House' },
                                                                                    { name: 'Jordan College, Oxford' }]
 
-      affiliation_attrs_ernold = [{ institution: institution_jordan_college, first_name: 'Dan', surname: 'Abnormal', status: 'primary' }] # rubocop:disable Layout/LineLength
-      affiliation_attrs_dan = [{ institution: institution_country_house, first_name: 'Ernold', surname: 'Same', status: 'primary' }] # rubocop:disable Layout/LineLength
+      affiliation_attrs_ernold = [{ institution: institution_jordan_college, first_name: 'Dan', surname: 'Abnormal', status: 'primary' }]
+      affiliation_attrs_dan = [{ institution: institution_country_house, first_name: 'Ernold', surname: 'Same', status: 'primary' }]
       author_ernold, author_dan = Author.create! [{ affiliations_attributes: affiliation_attrs_ernold },
                                                   { affiliations_attributes: affiliation_attrs_dan }]
 
-      Authorship.create! [{ article: vol1_issue1_article1, affiliation: author_ernold.primary_affiliation, position: 1 }, # rubocop:disable Layout/LineLength
+      Authorship.create! [{ article: vol1_issue1_article1, affiliation: author_ernold.primary_affiliation, position: 1 },
                           { article: vol1_issue1_article1, affiliation: author_dan.primary_affiliation, position: 2 },
                           { article: vol1_issue1_article2, affiliation: author_dan.primary_affiliation, position: 1 },
                           { article: vol1_issue2_article1, affiliation: author_dan.primary_affiliation, position: 1 },

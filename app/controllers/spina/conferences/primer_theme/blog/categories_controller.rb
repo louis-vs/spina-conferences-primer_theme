@@ -7,7 +7,7 @@ module Spina
         # Spina::Blog::CategoriesController
         class CategoriesController < ApplicationController
           include ::Spina::Frontend
-          
+
           before_action :page
           before_action :category
           before_action :posts

@@ -6,7 +6,7 @@ module Spina
   module Conferences
     module PrimerTheme
       module Conferences
-        class ConferencesNavigationTest < ActionDispatch::IntegrationTest
+        class ConferencesNavigationTest < ActionDispatch::IntegrationTest # rubocop:disable Metrics/ClassLength
           include ::Spina::Engine.routes.url_helpers
 
           test 'view conferences' do
@@ -23,11 +23,11 @@ module Spina
                       assert_select 'div.flex-auto' do
                         assert_select 'h3', conference.name
                         assert_select 'ul' do
-                          assert_select 'li', text: "#{I18n.localize(conference.start_date, format: :date)}–" \
-                                                    "#{I18n.localize(conference.finish_date, format: :long)}"
+                          assert_select 'li', text: "#{I18n.l(conference.start_date, format: :date)}–" \
+                                                    "#{I18n.l(conference.finish_date, format: :long)}"
                           if conference.institutions.any?
                             assert_select 'address', text: "#{conference.institutions.pluck(:name).to_sentence}, " \
-                                                          "#{conference.institutions.pluck(:city).uniq.to_sentence}"
+                                                           "#{conference.institutions.pluck(:city).uniq.to_sentence}"
                           else
                             assert_select 'address', false
                           end
@@ -199,8 +199,8 @@ module Spina
 
           def assert_conference_info_for(conference)
             assert_select 'h1', conference.name
-            assert_select 'ul > li', "#{I18n.localize(conference.start_date, format: :date)}–" \
-                                    "#{I18n.localize(conference.finish_date, format: :long)}"
+            assert_select 'ul > li', "#{I18n.l(conference.start_date, format: :date)}–" \
+                                     "#{I18n.l(conference.finish_date, format: :long)}"
           end
 
           def assert_conference_nav_for(conference)
@@ -226,7 +226,7 @@ module Spina
             assert_no_sponsors
           end
 
-          def assert_sponsors_for(conference)
+          def assert_sponsors_for(conference) # rubocop:disable Metrics/AbcSize
             assert_select 'h2', 'Sponsors'
             conference.content(:sponsors)
                       .to_a
@@ -249,7 +249,8 @@ module Spina
 
           def assert_submission_info_for(conference)
             assert_button_link conference.content(:submission_url), text: 'Submit an abstract'
-            assert_select 'div', "Submit abstracts by #{I18n.localize(conference.content(:submission_date), format: :full)}"
+            assert_select 'div',
+                          "Submit abstracts by #{I18n.l(conference.content(:submission_date), format: :full)}"
             assert_select 'div', conference.content(:submission_text)
           end
 
@@ -259,7 +260,8 @@ module Spina
 
           def assert_institution_logos_for(conference)
             conference.institutions.where.not(logo: nil).each do |institution|
-              assert_select 'ul > li > img:match(\'src\', ?)', main_app.url_for(institution.logo.variant(resize_to_limit: [300, 60]))
+              assert_select 'ul > li > img:match(\'src\', ?)',
+                            main_app.url_for(institution.logo.variant(resize_to_limit: [300, 60]))
             end
             conference.institutions.where(logo: nil).each do |institution|
               assert_select 'ul > li', institution.name
@@ -274,19 +276,19 @@ module Spina
 
           def assert_institutions_for(conference)
             assert_select 'ul > li > address', text: "#{conference.institutions.pluck(:name).to_sentence}, "\
-                                                    "#{conference.institutions.pluck(:city).uniq.to_sentence}"
+                                                     "#{conference.institutions.pluck(:city).uniq.to_sentence}"
           end
 
           def assert_no_institutions
             assert_select 'ul > li > address', false
           end
 
-          def assert_presentations_for(conference)
+          def assert_presentations_for(conference) # rubocop:disable Metrics/AbcSize
             assert_select 'div#presentation_list' do
               assert_select 'ul' do
                 conference.presentations.each do |presentation|
                   assert_select 'li', text: Regexp.new(presentation.title) do
-                    assert_select 'div', I18n.localize(presentation.start_datetime, format: :short)
+                    assert_select 'div', I18n.l(presentation.start_datetime, format: :short)
                     assert_select 'address', presentation.session.room_name
                     assert_select 'h3', presentation.title
                     assert_select 'address', presentation.presenters.collect(&:full_name_and_institution).to_sentence
@@ -302,13 +304,14 @@ module Spina
             end
           end
 
-          def assert_events_for(conference)
+          def assert_events_for(conference) # rubocop:disable Metrics/AbcSize
             assert_select 'div#event_list' do
               assert_select 'ul' do
                 conference.events.each do |event|
                   assert_select 'li', text: Regexp.new(event.name) do
                     assert_select 'div',
-                                  "#{I18n.localize(event.start_time, format: :short)}–#{I18n.localize(event.finish_time, format: :time)}"
+                                  "#{I18n.l(event.start_time,
+                                            format: :short)}–#{I18n.l(event.finish_time, format: :time)}"
                     assert_select 'address', event.location
                     assert_select 'h3', event.name
                     assert_select 'div.trix-content', event.description.to_plain_text

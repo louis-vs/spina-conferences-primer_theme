@@ -20,8 +20,8 @@ module Spina
                   Spina::Admin::Journal::Issue.sorted_desc.where('date <= ?', Time.zone.today).each do |issue|
                     assert_select 'li' do
                       assert_select 'h3', text: I18n.t('spina.conferences.primer_theme.journal.volume_issue',
-                                                      volume_number: issue.volume.number,
-                                                      issue_number: issue.number)
+                                                       volume_number: issue.volume.number,
+                                                       issue_number: issue.number)
                       assert_select('h4', text: issue.title) if issue.title.present?
                       assert_select 'time', text: I18n.l(issue.date, format: :long)
                     end
@@ -44,7 +44,8 @@ module Spina
             log_out_admin
 
             Spina::Admin::Journal::Issue.destroy_all
-            new_issue = Spina::Admin::Journal::Issue.create!(number: 1, volume: Spina::Admin::Journal::Volume.first, date: Time.zone.today + 1.day)
+            Spina::Admin::Journal::Issue.create!(number: 1, volume: Spina::Admin::Journal::Volume.first,
+                                                 date: Time.zone.today + 1.day)
             get frontend_issues_path
             assert_response :success
             assert_select 'div#journal-issues-list' do
@@ -56,7 +57,8 @@ module Spina
             log_in_as_admin
 
             Spina::Admin::Journal::Issue.destroy_all
-            new_issue = Spina::Admin::Journal::Issue.create!(number: 1, volume: Spina::Admin::Journal::Volume.first, date: Time.zone.today + 1.day)
+            new_issue = Spina::Admin::Journal::Issue.create!(number: 1, volume: Spina::Admin::Journal::Volume.first,
+                                                             date: Time.zone.today + 1.day)
             get frontend_issues_path
             assert_response :success
             assert_select 'main' do
@@ -64,8 +66,8 @@ module Spina
                 assert_select 'ul' do
                   assert_select 'li' do
                     assert_select 'h3', text: I18n.t('spina.conferences.primer_theme.journal.volume_issue',
-                                                    volume_number: new_issue.volume.number,
-                                                    issue_number: new_issue.number)
+                                                     volume_number: new_issue.volume.number,
+                                                     issue_number: new_issue.number)
                     assert_select 'time', text: I18n.l(new_issue.date, format: :long)
                   end
                 end
@@ -79,8 +81,8 @@ module Spina
             assert_response :success
             assert_select 'main' do
               assert_select 'h1', text: I18n.t('spina.conferences.primer_theme.journal.volume_issue',
-                                              volume_number: issue.volume.number,
-                                              issue_number: issue.number)
+                                               volume_number: issue.volume.number,
+                                               issue_number: issue.number)
               assert_select 'h2', text: issue.title
               assert_select 'div#journal-articles-list' do
                 assert_select 'ul' do

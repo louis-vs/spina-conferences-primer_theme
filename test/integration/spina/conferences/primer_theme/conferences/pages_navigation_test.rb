@@ -6,7 +6,7 @@ module Spina
   module Conferences
     module PrimerTheme
       module Conferences
-        class PagesNavigationTest < ActionDispatch::IntegrationTest
+        class PagesNavigationTest < ActionDispatch::IntegrationTest # rubocop:disable Metrics/ClassLength
           include ::Spina::Engine.routes.url_helpers
 
           test 'visit homepage' do
@@ -39,8 +39,8 @@ module Spina
                   end
                   assert_select 'h1', current_conference.name
                   assert_select 'address', current_conference.institutions.pluck(:name).to_sentence
-                  assert_select 'time', I18n.localize(current_conference.start_date, format: :day_and_month)
-                  assert_select 'time', I18n.localize(current_conference.finish_date, format: :day_and_month)
+                  assert_select 'time', I18n.l(current_conference.start_date, format: :day_and_month)
+                  assert_select 'time', I18n.l(current_conference.finish_date, format: :day_and_month)
                   assert_markdown_component
                   assert_link frontend_conference_path(current_conference), 'More info'
                 end
@@ -120,18 +120,19 @@ module Spina
                 assert_select 'div.clearfix' do
                   assert_select 'div:nth-child(1)' do
                     assert_select 'div', 'Constitution'
-                    assert_select 'div', "Uploaded #{I18n.l(Spina::Attachment.find(page.content(:constitution).attachment_id).created_at
-                                                                            .to_date, format: :long)}"
+                    assert_select 'div', "Uploaded #{I18n.l(Spina::Attachment.find(page.content(:constitution).attachment_id).created_at # rubocop:disable Layout/LineLength
+                                                                             .to_date, format: :long)}"
                     assert_button_link text: 'Download'
                   end
                   assert_select 'div:nth-child(2)' do
                     assert_select 'div', 'Minutes'
                     assert_select 'ul' do
                       page.content(:minutes).each_with_index do |minutes_item, index|
-                        assert_select "li:nth-child(#{index + 1})"  do
+                        assert_select "li:nth-child(#{index + 1})" do
                           if minutes_item.content(:date).present?
-                            assert_select 'div', "Minutes for #{I18n.localize(minutes_item.content(:date), format: :long)}" do
-                              assert_select 'time', I18n.localize(minutes_item.content(:date), format: :long)
+                            assert_select 'div',
+                                          "Minutes for #{I18n.l(minutes_item.content(:date), format: :long)}" do
+                              assert_select 'time', I18n.l(minutes_item.content(:date), format: :long)
                             end
                           else
                             assert_select 'time', false
@@ -148,9 +149,9 @@ module Spina
                     assert_select "li:nth-child(#{index + 1})" do
                       assert_select 'div', partner_society.content(:name)
                       assert_button_link partner_society.content(:website),
-                                        text: 'Website', count: partner_society.content(:website).present? ? 1 : 0
+                                         text: 'Website', count: partner_society.content(:website).present? ? 1 : 0
                       assert_button_link "mailto:#{partner_society.content(:email_address)}",
-                                        text: 'Email', count: partner_society.content(:email_address).present? ? 1 : 0
+                                         text: 'Email', count: partner_society.content(:email_address).present? ? 1 : 0
                       assert_markdown_component html: partner_society.content(:description),
                                                 count: partner_society.content(:description).present? ? 1 : 0
                       assert_select 'img', count: partner_society.content(:logo).present? ? 1 : 0
@@ -225,17 +226,18 @@ module Spina
                           if committee_bio.content(:name).present? && committee_bio.content(:role).present?
                             assert_select 'h3', text: "#{committee_bio.content(:name)}, #{committee_bio.content(:role)}"
                           else
-                            assert_select 'h3', text: committee_bio.content(:name), count: committee_bio.content(:name).present? ? 1 : 0
+                            assert_select 'h3', text: committee_bio.content(:name),
+                                                count: committee_bio.content(:name).present? ? 1 : 0
                           end
                           assert_select 'h4',
-                                        text: committee_bio.content(:institution), count: committee_bio.content(:institution).present? ? 1 : 0
+                                        text: committee_bio.content(:institution), count: committee_bio.content(:institution).present? ? 1 : 0 # rubocop:disable Layout/LineLength
                           assert_link committee_bio.content(:facebook_profile),
                                       text: 'Facebook', count: committee_bio.content(:facebook_profile).present? ? 1 : 0
                           assert_link committee_bio.content(:twitter_profile),
                                       text: 'Twitter', count: committee_bio.content(:twitter_profile).present? ? 1 : 0
                         end
                         assert_select 'div.flex-auto > div:not(.flex-column)',
-                                      html: committee_bio.content(:bio), count: committee_bio.content(:bio).present? ? 1 : 0
+                                      html: committee_bio.content(:bio), count: committee_bio.content(:bio).present? ? 1 : 0 # rubocop:disable Layout/LineLength
                       end
                     end
                   end

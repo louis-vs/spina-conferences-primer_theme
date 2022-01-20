@@ -54,7 +54,7 @@ module Spina
               get frontend_presentation_path(presentation)
               assert_response :success
               assert_select 'main' do
-                assert_button_link(/\/rails\/active_storage\/blobs\//, false)
+                assert_button_link(%r{/rails/active_storage/blobs/}, false)
               end
             end
           end

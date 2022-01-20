@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ChangeCurrentConferenceAlertToText < ActiveRecord::Migration[6.0]
+class ChangeCurrentConferenceAlertToText < ActiveRecord::Migration[6.0] # :nodoc:
   def up
     Spina::LayoutPart.where(name: 'current_conference_alert', layout_partable_type: 'Spina::Line').each do |layout_part|
       if layout_part.partable.present?

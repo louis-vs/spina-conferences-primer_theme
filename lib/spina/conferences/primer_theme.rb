@@ -12,7 +12,7 @@ require 'primer/view_components'
 require 'icalendar'
 
 module Spina
+  # A Primer-based frontend theme for Spina.
   module PrimerTheme
-    # Your code goes here...
   end
 end

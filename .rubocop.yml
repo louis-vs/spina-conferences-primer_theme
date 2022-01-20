@@ -5,14 +5,29 @@ require:
 
 AllCops:
   NewCops: enable
-
-Style/CommandLiteral:
-  EnforcedStyle: mixed
-
-Layout/LineLength:
-  Max: 140
-  AutoCorrect: true
+  Exclude:
+    - test/dummy/db/schema.rb
+    - test/dummy/db/migrate/*.rb
+    - node_modules/**/*
+    - tmp/**/*
+    - vendor/**/*
+    - .git/**/*
 
 Metrics/BlockLength:
   Exclude:
-    - test/dummy/db/schema.rb
+    - "*.gemspec"
+    - test/integration/spina/conferences/primer_theme/conferences/pages_navigation_test.rb
+    - test/integration/spina/conferences/primer_theme/conferences/conferences_navigation_test.rb
+
+Layout/LineLength:
+  Exclude:
+    - test/dummy/db/seeds.rb
+
+Metrics/MethodLength:
+  Exclude:
+    - test/integration/spina/conferences/primer_theme/conferences/pages_navigation_test.rb
+    - test/integration/spina/conferences/primer_theme/conferences/conferences_navigation_test.rb
+
+Naming/VariableNumber:
+  Exclude:
+    - test/**/*
