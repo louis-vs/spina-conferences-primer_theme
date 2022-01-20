@@ -3,8 +3,6 @@
 ![Rails tests](https://github.com/louis-vs/spina-conferences-primer_theme-fork/workflows/Verify/badge.svg?branch=master&event=push)
 [![codecov](https://codecov.io/gh/louis-vs/spina-conferences-primer_theme-fork/branch/master/graph/badge.svg?token=9TZ9QGGLAH)](https://codecov.io/gh/louis-vs/spina-conferences-primer_theme-fork)
 [![CodeFactor](https://www.codefactor.io/repository/github/louis-vs/spina-conferences-primer_theme-fork/badge)](https://www.codefactor.io/repository/github/louis-vs/spina-conferences-primer_theme-fork)
-[![LGTM alerts](https://img.shields.io/lgtm/alerts/g/louis-vs/spina-conferences-primer_theme-fork.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/louis-vs/spina-conferences-primer_theme-fork/alerts/)
-[![Code quality: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/louis-vs/spina-conferences-primer_theme-fork.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/louis-vs/spina-conferences-primer_theme-fork/context:javascript)
 [![Inline docs](http://inch-ci.org/github/louis-vs/spina-conferences-primer_theme-fork.svg?branch=master)](http://inch-ci.org/github/louis-vs/spina-conferences-primer_theme-fork)
 
 A plugin for `Spina` that provides a frontend for `Spina::Admin::Conferences` using components from `Primer::ViewComponents`.
