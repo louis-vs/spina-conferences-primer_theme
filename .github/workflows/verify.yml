@@ -81,6 +81,8 @@ jobs:
 
       - name: Prepare test db
         run: bin/rails db:setup
+      - name: Precompile assets
+        run: bin/rails app:assets:precompile
       - name: Run tests
         run: bin/rails test
 
@@ -133,5 +135,7 @@ jobs:
 
       - name: Prepare test db
         run: bin/rails db:setup
+      - name: Precompile assets
+        run: bin/rails app:assets:precompile
       - name: Run tests
         run: bin/rails app:test:system
