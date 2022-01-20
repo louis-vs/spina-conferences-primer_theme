@@ -30,7 +30,7 @@ jobs:
       - name: Run RuboCop
         run: bin/rails rubocop
       - name: Run ESLint
-        run: eslint --ext .js,.es6 "app/assets/javascripts/**"
+        run: eslint "app/assets/javascripts/**/*{.js,.es6}"
 
   tests:
     name: Rails tests
