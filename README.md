@@ -5,12 +5,12 @@
 [![CodeFactor](https://www.codefactor.io/repository/github/louis-vs/spina-conferences-primer_theme-fork/badge)](https://www.codefactor.io/repository/github/louis-vs/spina-conferences-primer_theme-fork)
 [![Inline docs](http://inch-ci.org/github/louis-vs/spina-conferences-primer_theme-fork.svg?branch=master)](http://inch-ci.org/github/louis-vs/spina-conferences-primer_theme-fork)
 
-A plugin for `Spina` that provides a frontend for `Spina::Admin::Conferences` using components from `Primer::ViewComponents`.
+A plugin for `Spina` that provides a frontend for `Spina::Admin::Conferences`, `Spina::Admin::Journal`, and `Spina::Admin::Conferences::Blog` using components from `Primer::ViewComponents`.
 
-This fork provides an updated version of the plugin, as the main repo is currently stale.
+This fork provides an updated version of the plugin, as the main repo is currently badly outdated.
 
 ## Usage
-See the README for `Spina::Admin::Conferences`. Also make sure to ensure compilation of the assets for this gem by adding the following line to your
+See the READMEs for the conference plugin, the journal plugin, and the bog plugin, respectively, for more information on what kind of content this frontend allows you to create and how to do so within the admin interface. Also make sure to ensure compilation of the assets for this gem by adding the following line to your
 `manifest.js` file.
 
 ```js
