@@ -21,6 +21,7 @@ Gem::Specification.new do |spec|
   spec.files = Dir['{app,config,db,lib}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.md']
 
   spec.add_dependency 'babel-transpiler', '~> 0.7'
+  spec.add_dependency 'cssbundling-rails', '~> 1.0'
   spec.add_dependency 'icalendar', '~> 2.5'
   spec.add_dependency 'image_processing', '~> 1.9'
   spec.add_dependency 'primer_view_components', '0.0.66'

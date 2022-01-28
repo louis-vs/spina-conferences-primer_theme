@@ -1,4 +1,4 @@
-//= link_directory ../stylesheets/spina/conferences/primer_theme .css
+//= link_tree ../builds
 //= link_directory ../javascripts/spina/conferences/primer_theme .js
 //= link spina_admin_conferences_manifest.js
 //= link spina_admin_journal_manifest.js

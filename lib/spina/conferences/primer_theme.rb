@@ -9,6 +9,7 @@ require 'spina/admin/conferences/blog'
 require 'view_component'
 require 'primer/view_components'
 require 'icalendar'
+require 'cssbundling-rails'
 
 module Spina
   # A Primer-based frontend theme for Spina.
