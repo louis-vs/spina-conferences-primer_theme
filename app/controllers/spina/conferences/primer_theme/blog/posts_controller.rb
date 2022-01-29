@@ -6,8 +6,6 @@ module Spina
       module Blog
         # Spina::Blog::PostsController
         class PostsController < ApplicationController
-          include ::Spina::Frontend
-
           before_action :find_posts, only: [:index]
           before_action :current_spina_user_can_view_page?
           before_action :set_breadcrumb, only: :show

@@ -7,6 +7,7 @@ module Spina
         # Base class from which controllers related to the blog plugin inherit
         class ApplicationController < ::Spina::ApplicationController
           include ::Spina::Frontend
+
           def cookies_info
             render partial: 'cookies'
           end
