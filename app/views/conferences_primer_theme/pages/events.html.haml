@@ -12,7 +12,7 @@
         - else
           = t :'.upcoming'
 
-    - content(:events_list).filter do |event| 
+    - content(:events_list).filter do |event|
       - (event.content(:start_date).blank? || event.content(:start_date) >= Date.today) && event.content(:is_archived) != Spina::Parts::Conferences::PrimerTheme::Checkbox::CHECKED_VALUE
     - end.then do |events|
       - if events.any?
