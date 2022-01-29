@@ -1,6 +1,6 @@
 //= link_tree ../builds
 
-//= link_directory ../javascripts/spina/conferences/primer_theme/controllers
+//= link_directory ../javascripts/spina/conferences/primer_theme/controllers .js
 //= link spina/conferences/primer_theme/application.js
 
 //= link @github/details-dialog-element/dist/index.js
