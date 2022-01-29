@@ -6,6 +6,7 @@
 # Rails.application.config.assets.paths << Emoji.images_path
 # Add Yarn node_modules folder to the asset load path.
 Rails.application.config.assets.paths << Spina::Conferences::PrimerTheme::Engine.root.join('node_modules')
+Rails.application.config.assets.paths << Spina::Conferences::PrimerTheme::Engine.root.join('app/assets/builds')
 
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in the app/assets
