@@ -1,7 +1,6 @@
-//= require stimulus
-//= require_directory ./controllers
-
-// eslint-disable-next-line no-undef
-const application = Stimulus.Application.start()
-// eslint-disable-next-line no-undef
-application.register('slideshow', SlideshowController)
+import '@hotwired/turbo-rails'
+import '@github/details-dialog-element'
+import '@github/include-fragment-element'
+import '@github/filter-input-element'
+import '@github/details-menu-element'
+import 'controllers'
