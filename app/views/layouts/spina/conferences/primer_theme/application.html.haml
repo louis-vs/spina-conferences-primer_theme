@@ -11,17 +11,17 @@
     %base{ target: '_blank' }
     = csrf_meta_tags
     %title= t(:'.title', title: seo_title, suffix: current_account.name)
-    = render 'spina/shared/google_site_verification'
-    = render 'spina/shared/analytics'
+    = render 'google_site_verification'
+    = render 'analytics'
     = stylesheet_link_tag 'spina/conferences/primer_theme/application', media: 'all', data: { turbolinks_track: true }
     = primer_theme_importmap_tags
     = yield :head
   %body
     - if current_spina_user.present?
-      .admin= render 'spina/shared/admin_bar'
+      .admin= render 'admin_bar'
     %header= render 'navigation'
     - unless local_assigns[:hide_alert]
-      = render 'current_conference_alert'
+      = render 'alert'
     - if content_for? :flash
       .flash-messages= yield :flash
     %main
@@ -30,6 +30,4 @@
         .container-lg.p-responsive.mt-4= yield :breadcrumbs
       = yield :header
       .container-lg.p-responsive.mt-4= yield
-    %footer
-      .container-lg.p-responsive.py-4= render 'footer'
-    = render 'spina/shared/social'
+    %footer.footer.width-full.container-lg.p-responsive= render 'footer'

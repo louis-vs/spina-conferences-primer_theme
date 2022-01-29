@@ -1,0 +1,7 @@
+- if current_spina_user.present?
+  #admin_bar
+    = render Primer::BoxComponent.new(bg: :accent, p: 3, text_align: :right) do
+      = render Primer::LinkComponent.new(href: spina.admin_root_path, mr: 3, data: { turbo: false }, classes: 'btn') do
+        = t 'spina.edit_website'
+      = render Primer::LinkComponent.new(href: spina.admin_logout_path, classes: 'btn') do
+        = t 'spina.logout'
