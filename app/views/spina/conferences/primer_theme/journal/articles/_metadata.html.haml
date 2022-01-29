@@ -2,9 +2,9 @@
   %link{ rel: 'schema.DC', href: 'http://purl.org/dc/elements/1.1/' }
   - @article.authorships.sorted_within_article.each do |authorship|
     %meta{ name: 'DC.Creator.PersonalName', content: authorship.affiliation.name }
-  %meta{ name: 'DC.Date.created', scheme: 'ISO8601', content: @issue.date.to_s(:iso8601) }
-  %meta{ name: 'DC.Date.issued', scheme: 'ISO8601', content: @issue.date.to_s(:iso8601) }
-  %meta{ name: 'DC.Date.modified', scheme: 'ISO8601', content: @issue.date.to_s(:iso8601) }
+  %meta{ name: 'DC.Date.created', scheme: 'ISO8601', content: @issue.date.to_formatted_s(:iso8601) }
+  %meta{ name: 'DC.Date.issued', scheme: 'ISO8601', content: @issue.date.to_formatted_s(:iso8601) }
+  %meta{ name: 'DC.Date.modified', scheme: 'ISO8601', content: @issue.date.to_formatted_s(:iso8601) }
   - if @article.has_content? :attachment
     %meta{ name: 'DC.Format', scheme: 'IMT', content: 'application/pdf' }
   %meta{ name: 'DC.Identifier', content: @article.id }
@@ -31,7 +31,7 @@
     %meta{ name: 'citation_author', content: authorship.affiliation.name }
     %meta{ name: 'citation_author_institution', content: authorship.affiliation.institution.name }
   %meta{ name: 'citation_language', content: 'en' }
-  %meta{ name: 'citation_date', content: @issue.date.to_s(:iso8601).gsub('-', '/') }
+  %meta{ name: 'citation_date', content: @issue.date.to_formatted_s(:iso8601).gsub('-', '/') }
   %meta{ name: 'citation_volume', content: @issue.volume.number }
   %meta{ name: 'citation_issue', content: @issue.number }
   - if @article.has_content? :page_range
