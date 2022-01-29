@@ -13,7 +13,7 @@
     %title= t(:'.title', title: seo_title, suffix: current_account.name)
     = render 'google_site_verification'
     = render 'analytics'
-    = stylesheet_link_tag 'spina/conferences/primer_theme/application', media: 'all', data: { turbolinks_track: true }
+    = stylesheet_link_tag 'spina/conferences/primer_theme/application', media: 'all', data: { turbo_track: true }
     = primer_theme_importmap_tags
     = yield :head
   %body
