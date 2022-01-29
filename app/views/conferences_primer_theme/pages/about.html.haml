@@ -2,11 +2,11 @@
   = render(Primer::HeadingComponent.new(tag: :h1)) { current_page.title }
 
   - if content(:text).present?
-    = render(Primer::Markdown.new(mt: 4)) { content.html(:text) }
+    = render(Primer::Markdown.new(mt: 4)) { content.html(:text).to_s }
   - if content(:contact).present?
     = render Primer::SubheadComponent.new(mt: 4) do |component|
       = component.heading { t :'.contact.title' }
-    = render(Primer::Markdown.new) { content.html(:contact) }
+    = render(Primer::Markdown.new) { content.html(:contact).to_s }
 
   .clearfix.gutter
     = render Primer::BoxComponent.new(mt: 4, col: [12, nil, 6, nil], float: [nil, nil, :left, nil]) do

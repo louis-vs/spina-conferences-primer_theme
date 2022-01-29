@@ -14,7 +14,7 @@
           = item.content(:title)
       %div{ style: 'text-shadow: 0 1px 1px rgba(var(--color-scale-black), 0.25), 0 1px 25px rgba(var(--color-scale-black), 0.75);' }
         = render(Primer::Markdown.new(my: 4)) do
-          = item.content(:description).html_safe
+          = item.content.html(:description).to_s
       - if item.content(:url).present?
         = link_to t('.more_info'), item.content(:url),
                   class: %w[btn-mktg btn-large-mktg btn-primary-mktg f3 mt-4]

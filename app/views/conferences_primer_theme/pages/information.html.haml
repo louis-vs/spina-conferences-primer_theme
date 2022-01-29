@@ -2,4 +2,4 @@
   = render(Primer::HeadingComponent.new(tag: :h1)) { current_page.title }
 
   - if content(:text).present?
-    = render(Primer::Markdown.new(mt: 4)) { content.html(:text) }
+    = render(Primer::Markdown.new(mt: 4)) { content.html(:text).to_s }
