@@ -115,8 +115,8 @@ module Spina
             assert_response :success
             assert_select 'main' do
               # DODGY
-              assert_markdown_component page.content(:text).to_s.gsub(/<\/?div>/, '')
-              assert_markdown_component page.content(:contact).to_s.gsub(/<\/?div>/, '')
+              assert_markdown_component page.content(:text).to_s.gsub(%r{</?div>}, '')
+              assert_markdown_component page.content(:contact).to_s.gsub(%r{</?div>}, '')
 
               assert_select 'div.clearfix' do
                 assert_select 'div:nth-child(1)' do
@@ -150,9 +150,9 @@ module Spina
                   assert_select "li:nth-child(#{index + 1})" do
                     assert_select 'div', partner_society.content(:name)
                     assert_button_link partner_society.content(:website),
-                                        text: 'Website', count: partner_society.content(:website).present? ? 1 : 0
+                                       text: 'Website', count: partner_society.content(:website).present? ? 1 : 0
                     assert_button_link "mailto:#{partner_society.content(:email_address)}",
-                                        text: 'Email', count: partner_society.content(:email_address).present? ? 1 : 0
+                                       text: 'Email', count: partner_society.content(:email_address).present? ? 1 : 0
                     assert_markdown_component html: partner_society.content(:description).to_s,
                                               count: partner_society.content(:description).present? ? 1 : 0
                     assert_select 'img', count: partner_society.content(:logo).present? ? 1 : 0
@@ -218,7 +218,7 @@ module Spina
             assert_response :success
             assert_select 'main' do
               # DODGY
-              assert_markdown_component page.content(:text).to_s.gsub(/<\/?div>/, '')
+              assert_markdown_component page.content(:text).to_s.gsub(%r{</?div>}, '')
 
               assert_select 'ul' do
                 page.content(:committee_bios).each_with_index do |committee_bio, index|
@@ -280,7 +280,7 @@ module Spina
             assert_response :success
             assert_select 'main' do
               # DODGY
-              assert_markdown_component page.content(:text).to_s.gsub(/<\/?div>/, '')
+              assert_markdown_component page.content(:text).to_s.gsub(%r{</?div>}, '')
               assert_select 'div' do
                 assert_select 'iframe[src=?]', page.content(:embed_url)
               end

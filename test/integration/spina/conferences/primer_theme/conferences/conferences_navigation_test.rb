@@ -217,7 +217,7 @@ module Spina
               assert_slide conference.content(:gallery).count
             end
             # DODGY
-            assert_markdown_component conference.content(:text).to_s.gsub(/<\/?div>/, '')
+            assert_markdown_component conference.content(:text).to_s.gsub(%r{</?div>}, '')
             assert_sponsors_for conference
           end
 

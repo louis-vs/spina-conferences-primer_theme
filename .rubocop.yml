@@ -16,7 +16,7 @@ AllCops:
 Metrics/BlockLength:
   Exclude:
     - "*.gemspec"
-    - test/integration/spina/conferences/primer_theme/conferences/pages_navigation_test.rb
+    - test/integration/spina/conferences/primer_theme/pages_navigation_test.rb
     - test/integration/spina/conferences/primer_theme/conferences/conferences_navigation_test.rb
 
 Layout/LineLength:
