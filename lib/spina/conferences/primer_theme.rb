@@ -12,7 +12,14 @@ require 'icalendar'
 require 'cssbundling-rails'
 
 module Spina
-  # A Primer-based frontend theme for Spina.
-  module PrimerTheme
+  module Conferences
+    # A Primer-based frontend theme for Spina.
+    module PrimerTheme
+      include ActiveSupport::Configurable
+
+      config_accessor :importmap
+
+      self.importmap = Importmap::Map.new
+    end
   end
 end

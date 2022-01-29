@@ -14,12 +14,7 @@
     = render 'spina/shared/google_site_verification'
     = render 'spina/shared/analytics'
     = stylesheet_link_tag 'spina/conferences/primer_theme/application', media: 'all', data: { turbolinks_track: true }
-    = javascript_include_tag 'spina/conferences/primer_theme/application', data: { turbolinks_track: true }
-    = javascript_include_tag 'turbo', type: 'module'
-    %script{ type: 'module', src: asset_path('@github/details-dialog-element/dist/index.js') }
-    %script{ type: 'module', src: asset_path('@github/include-fragment-element/dist/index.js') }
-    %script{ type: 'module', src: asset_path('@github/filter-input-element/dist/index.js') }
-    %script{ type: 'module', src: asset_path('@github/details-menu-element/dist/index.js') }
+    = primer_theme_importmap_tags
     = yield :head
   %body
     - if current_spina_user.present?
