@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_28_154908) do
+ActiveRecord::Schema.define(version: 2022_01_30_182539) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 2022_01_28_154908) do
     t.string "record_type", null: false
     t.bigint "record_id", null: false
     t.bigint "blob_id", null: false
-    t.datetime "created_at", null: false
+    t.datetime "created_at", precision: 6, null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 2022_01_28_154908) do
     t.text "metadata"
     t.bigint "byte_size", null: false
     t.string "checksum", null: false
-    t.datetime "created_at", null: false
+    t.datetime "created_at", precision: 6, null: false
     t.string "service_name", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 2022_01_28_154908) do
     t.integer "sluggable_id", null: false
     t.string "sluggable_type", limit: 50
     t.string "scope"
-    t.datetime "created_at"
+    t.datetime "created_at", precision: 6
     t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
     t.index ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
@@ -82,8 +82,8 @@ ActiveRecord::Schema.define(version: 2022_01_28_154908) do
     t.string "phone"
     t.string "email"
     t.text "preferences"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.boolean "robots_allowed", default: false
     t.jsonb "json_attributes"
   end
@@ -118,6 +118,7 @@ ActiveRecord::Schema.define(version: 2022_01_28_154908) do
   create_table "spina_admin_journal_authors", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "orcid", default: "", null: false
   end
 
   create_table "spina_admin_journal_authorships", force: :cascade do |t|
@@ -185,8 +186,8 @@ ActiveRecord::Schema.define(version: 2022_01_28_154908) do
   end
 
   create_table "spina_attachment_collections", id: :serial, force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "spina_attachment_collections_attachments", id: :serial, force: :cascade do |t|
@@ -196,15 +197,15 @@ ActiveRecord::Schema.define(version: 2022_01_28_154908) do
 
   create_table "spina_attachments", id: :serial, force: :cascade do |t|
     t.string "file"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "spina_blog_categories", id: :serial, force: :cascade do |t|
     t.string "name"
     t.string "slug"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["slug"], name: "index_spina_blog_categories_on_slug"
   end
 
@@ -238,11 +239,11 @@ ActiveRecord::Schema.define(version: 2022_01_28_154908) do
     t.text "content"
     t.integer "image_id"
     t.boolean "draft"
-    t.datetime "published_at"
+    t.datetime "published_at", precision: 6
     t.string "slug"
     t.integer "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.integer "category_id"
     t.boolean "featured", default: false
     t.string "seo_title"
@@ -265,8 +266,8 @@ ActiveRecord::Schema.define(version: 2022_01_28_154908) do
 
   create_table "spina_conferences_conferences", force: :cascade do |t|
     t.daterange "dates", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.jsonb "json_attributes"
   end
 
@@ -277,8 +278,8 @@ ActiveRecord::Schema.define(version: 2022_01_28_154908) do
 
   create_table "spina_conferences_date_parts", force: :cascade do |t|
     t.date "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "spina_conferences_delegates", force: :cascade do |t|
@@ -287,8 +288,8 @@ ActiveRecord::Schema.define(version: 2022_01_28_154908) do
     t.string "email_address"
     t.string "url"
     t.bigint "institution_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["institution_id"], name: "index_spina_conferences_delegates_on_institution_id"
   end
 
@@ -313,14 +314,14 @@ ActiveRecord::Schema.define(version: 2022_01_28_154908) do
   end
 
   create_table "spina_conferences_dietary_requirements", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "spina_conferences_email_address_parts", force: :cascade do |t|
     t.string "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "spina_conferences_event_translations", force: :cascade do |t|
@@ -335,8 +336,8 @@ ActiveRecord::Schema.define(version: 2022_01_28_154908) do
   end
 
   create_table "spina_conferences_events", force: :cascade do |t|
-    t.datetime "start_datetime"
-    t.datetime "finish_datetime"
+    t.datetime "start_datetime", precision: 6
+    t.datetime "finish_datetime", precision: 6
     t.integer "conference_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -355,8 +356,8 @@ ActiveRecord::Schema.define(version: 2022_01_28_154908) do
   end
 
   create_table "spina_conferences_institutions", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.bigint "logo_id"
     t.index ["logo_id"], name: "index_spina_conferences_institutions_on_logo_id"
   end
@@ -421,16 +422,16 @@ ActiveRecord::Schema.define(version: 2022_01_28_154908) do
   create_table "spina_conferences_presentation_types", force: :cascade do |t|
     t.interval "duration", null: false
     t.bigint "conference_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["conference_id"], name: "index_spina_conferences_presentation_types_on_conference_id"
   end
 
   create_table "spina_conferences_presentations", force: :cascade do |t|
     t.bigint "session_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.datetime "start_datetime", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "start_datetime", precision: 6, null: false
     t.jsonb "json_attributes"
     t.index ["session_id"], name: "index_spina_conferences_presentations_on_session_id"
   end
@@ -448,8 +449,8 @@ ActiveRecord::Schema.define(version: 2022_01_28_154908) do
 
   create_table "spina_conferences_rooms", force: :cascade do |t|
     t.bigint "institution_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["institution_id"], name: "index_spina_conferences_rooms_on_institution_id"
   end
 
@@ -473,20 +474,20 @@ ActiveRecord::Schema.define(version: 2022_01_28_154908) do
   end
 
   create_table "spina_conferences_time_parts", force: :cascade do |t|
-    t.datetime "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "content", precision: 6
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "spina_conferences_url_parts", force: :cascade do |t|
     t.string "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "spina_image_collections", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "spina_image_collections_images", id: :serial, force: :cascade do |t|
@@ -499,8 +500,8 @@ ActiveRecord::Schema.define(version: 2022_01_28_154908) do
 
   create_table "spina_images", force: :cascade do |t|
     t.integer "media_folder_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["media_folder_id"], name: "index_spina_images_on_media_folder_id"
   end
 
@@ -509,8 +510,8 @@ ActiveRecord::Schema.define(version: 2022_01_28_154908) do
     t.string "name"
     t.integer "layout_partable_id"
     t.string "layout_partable_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
     t.integer "account_id"
   end
 
@@ -518,21 +519,21 @@ ActiveRecord::Schema.define(version: 2022_01_28_154908) do
     t.integer "spina_line_id", null: false
     t.string "locale", null: false
     t.string "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["locale"], name: "index_spina_line_translations_on_locale"
     t.index ["spina_line_id"], name: "index_spina_line_translations_on_spina_line_id"
   end
 
   create_table "spina_lines", id: :serial, force: :cascade do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
   end
 
   create_table "spina_media_folders", force: :cascade do |t|
     t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "spina_navigation_items", id: :serial, force: :cascade do |t|
@@ -540,8 +541,8 @@ ActiveRecord::Schema.define(version: 2022_01_28_154908) do
     t.integer "navigation_id", null: false
     t.integer "position", default: 0, null: false
     t.string "ancestry"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
     t.index ["page_id", "navigation_id"], name: "index_spina_navigation_items_on_page_id_and_navigation_id", unique: true
   end
 
@@ -550,22 +551,22 @@ ActiveRecord::Schema.define(version: 2022_01_28_154908) do
     t.string "label", null: false
     t.boolean "auto_add_pages", default: false, null: false
     t.integer "position", default: 0, null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
     t.index ["name"], name: "index_spina_navigations_on_name", unique: true
   end
 
   create_table "spina_options", id: :serial, force: :cascade do |t|
     t.string "value"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "spina_page_parts", id: :serial, force: :cascade do |t|
     t.string "title"
     t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.integer "page_id"
     t.integer "page_partable_id"
     t.string "page_partable_type"
@@ -579,8 +580,8 @@ ActiveRecord::Schema.define(version: 2022_01_28_154908) do
     t.string "description"
     t.string "seo_title"
     t.string "materialized_path"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.string "url_title"
     t.index ["locale"], name: "index_spina_page_translations_on_locale"
     t.index ["spina_page_id"], name: "index_spina_page_translations_on_spina_page_id"
@@ -590,8 +591,8 @@ ActiveRecord::Schema.define(version: 2022_01_28_154908) do
     t.boolean "show_in_menu", default: true
     t.string "slug"
     t.boolean "deletable", default: true
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.string "name"
     t.boolean "skip_to_first_child", default: false
     t.string "view_template"
@@ -621,31 +622,31 @@ ActiveRecord::Schema.define(version: 2022_01_28_154908) do
     t.string "label"
     t.string "view_template"
     t.string "order_by"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.jsonb "slug"
   end
 
   create_table "spina_rewrite_rules", id: :serial, force: :cascade do |t|
     t.string "old_path"
     t.string "new_path"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
   end
 
   create_table "spina_settings", id: :serial, force: :cascade do |t|
     t.string "plugin"
     t.jsonb "preferences", default: {}
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["plugin"], name: "index_spina_settings_on_plugin"
   end
 
   create_table "spina_structure_items", id: :serial, force: :cascade do |t|
     t.integer "structure_id"
     t.integer "position"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
     t.index ["structure_id"], name: "index_spina_structure_items_on_structure_id"
   end
 
@@ -655,30 +656,30 @@ ActiveRecord::Schema.define(version: 2022_01_28_154908) do
     t.string "structure_partable_type"
     t.string "name"
     t.string "title"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
     t.index ["structure_item_id"], name: "index_spina_structure_parts_on_structure_item_id"
     t.index ["structure_partable_id"], name: "index_spina_structure_parts_on_structure_partable_id"
   end
 
   create_table "spina_structures", id: :serial, force: :cascade do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
   end
 
   create_table "spina_text_translations", id: :serial, force: :cascade do |t|
     t.integer "spina_text_id", null: false
     t.string "locale", null: false
     t.text "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["locale"], name: "index_spina_text_translations_on_locale"
     t.index ["spina_text_id"], name: "index_spina_text_translations_on_spina_text_id"
   end
 
   create_table "spina_texts", id: :serial, force: :cascade do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
   end
 
   create_table "spina_users", id: :serial, force: :cascade do |t|
@@ -686,11 +687,11 @@ ActiveRecord::Schema.define(version: 2022_01_28_154908) do
     t.string "email"
     t.string "password_digest"
     t.boolean "admin", default: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.datetime "last_logged_in"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "last_logged_in", precision: 6
     t.string "password_reset_token"
-    t.datetime "password_reset_sent_at"
+    t.datetime "password_reset_sent_at", precision: 6
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
