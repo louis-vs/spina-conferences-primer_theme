@@ -13,7 +13,7 @@
 
   - if @issue.has_content?(:description)
     = render(Primer::Markdown.new(my: 4)) do
-      = @issue.content.html(:description)
+      = @issue.content.html(:description).to_s
 
   - if @issue.has_content?(:attachment)
     = render(Primer::ButtonComponent.new(tag: :a, scheme: :primary, href: main_app.url_for(@issue.content(:attachment)), my: 2, download: '')) do

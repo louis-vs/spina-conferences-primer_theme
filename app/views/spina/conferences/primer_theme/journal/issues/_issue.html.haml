@@ -14,4 +14,4 @@
       = time_tag issue.date, format: :long
     - if issue.has_content?(:description)
       = render(Primer::Beta::Text.new(tag: :div, color: :muted, mt: 2)) do
-        = issue.content.html(:description)
+        = issue.content.html(:description).to_s

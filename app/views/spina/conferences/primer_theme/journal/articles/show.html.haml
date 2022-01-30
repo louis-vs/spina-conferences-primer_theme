@@ -16,7 +16,7 @@
 
       - if @article.has_content?(:abstract)
         = render(Primer::HeadingComponent.new(tag: :h2, mt: 4, font_size: 3)) { t '.abstract' }
-        = render(Primer::Markdown.new) { @article.content.html(:abstract) }
+        = render(Primer::Markdown.new) { @article.content.html(:abstract).to_s }
 
     = render(Primer::BorderBoxComponent.new(ml: [nil, nil, 4, nil], style: 'min-width: 20vw')) do |sidebar|
       - sidebar.body do
