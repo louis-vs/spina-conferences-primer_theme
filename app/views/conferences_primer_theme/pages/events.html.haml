@@ -2,7 +2,7 @@
   = render(Primer::HeadingComponent.new(tag: :h1)) { current_page.title }
 
   - if content(:text).present?
-    = render(Primer::Markdown.new(mt: 4)) { content.html(:text) }
+    = render(Primer::Markdown.new(mt: 4)) { content.html(:text).to_s }
 
   - if content(:events_list).present?
     = render Primer::SubheadComponent.new(mt: 4) do |component|
@@ -12,7 +12,7 @@
         - else
           = t :'.upcoming'
 
-    - content(:events_list).filter do |event| 
+    - content(:events_list).filter do |event|
       - (event.content(:start_date).blank? || event.content(:start_date) >= Date.today) && event.content(:is_archived) != Spina::Parts::Conferences::PrimerTheme::Checkbox::CHECKED_VALUE
     - end.then do |events|
       - if events.any?

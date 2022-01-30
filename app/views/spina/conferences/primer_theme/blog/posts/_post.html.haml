@@ -4,7 +4,8 @@
   = link_to post.title, frontend_blog_post_path(post)
 = render(Primer::HeadingComponent.new(tag: :h4)) do
   = time_tag post.published_at, format: :ordinal_datetime_with_year
-= render(Primer::Markdown.new(color: :muted)) do
-  = post.excerpt.html_safe
+- if post.excerpt.present?
+  = render(Primer::Markdown.new(color: :muted)) do
+    = post.excerpt.html_safe
 = render(Primer::Beta::Text.new(tag: :div, color: :muted)) do
   = t '.category_html', name: link_to(post.category.name, frontend_blog_category_path(post.category))

@@ -21,14 +21,15 @@ Gem::Specification.new do |spec|
   spec.files = Dir['{app,config,db,lib}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.md']
 
   spec.add_dependency 'babel-transpiler', '~> 0.7'
+  spec.add_dependency 'cssbundling-rails', '~> 1.0'
   spec.add_dependency 'icalendar', '~> 2.5'
   spec.add_dependency 'image_processing', '~> 1.9'
   spec.add_dependency 'primer_view_components', '0.0.66'
-  spec.add_dependency 'rails', '~> 6.0'
-  spec.add_dependency 'spina', '~> 2.0.0'
-  spec.add_dependency 'spina-admin-conferences-blog', '~> 0.1.4'
-  spec.add_dependency 'spina-admin-conferences-fork', '~> 2.1.0'
-  spec.add_dependency 'spina-admin-journal', '~> 0.6.0'
+  spec.add_dependency 'rails', '~> 7.0'
+  spec.add_dependency 'spina', '~> 2.8'
+  spec.add_dependency 'spina-admin-conferences-blog', '0.3.1'
+  spec.add_dependency 'spina-admin-conferences-fork', '3.0.0.rc2'
+  spec.add_dependency 'spina-admin-journal', '1.0.0.rc2'
 
   spec.add_development_dependency 'capybara', '~> 3.33'
   spec.add_development_dependency 'dotenv-rails', '~> 2.7'

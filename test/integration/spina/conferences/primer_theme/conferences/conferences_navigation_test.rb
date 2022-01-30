@@ -216,7 +216,8 @@ module Spina
             assert_slideshow conference.content(:gallery).present? do
               assert_slide conference.content(:gallery).count
             end
-            assert_markdown_component html: conference.content.html(:text)
+            # DODGY
+            assert_markdown_component conference.content(:text).to_s.gsub(%r{</?div>}, '')
             assert_sponsors_for conference
           end
 
@@ -248,10 +249,12 @@ module Spina
           end
 
           def assert_submission_info_for(conference)
-            assert_button_link conference.content(:submission_url), text: 'Submit an abstract'
-            assert_select 'div',
-                          "Submit abstracts by #{I18n.l(conference.content(:submission_date), format: :full)}"
-            assert_select 'div', conference.content(:submission_text)
+            assert_select '.flash-messages' do
+              assert_button_link conference.content(:submission_url), text: 'Submit an abstract'
+              assert_select 'div',
+                            "Submit abstracts by #{I18n.l(conference.content(:submission_date), format: :full)}"
+              assert_select 'div', conference.content(:submission_text)
+            end
           end
 
           def assert_no_submission_info

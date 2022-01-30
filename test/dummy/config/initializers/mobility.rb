@@ -11,7 +11,7 @@ Mobility.configure do
     cache
     presence
     fallbacks false
-    dirty
+    locale_accessors
     default
   end
 end

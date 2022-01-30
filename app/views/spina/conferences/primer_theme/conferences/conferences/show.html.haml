@@ -23,7 +23,7 @@
     - when 'information'
       - cache [@conference, @tab] do
         - if @conference.content(:text).present?
-          = render(Primer::Markdown.new(my: 4)) { @conference.content.html(:text) }
+          = render(Primer::Markdown.new(my: 4)) { @conference.content.html(:text).to_s }
         - else
           = render Primer::BlankslateComponent.new(title: t(:'.no_information'), icon: 'info', my: 4)
     - when 'presentations'

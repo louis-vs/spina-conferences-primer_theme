@@ -4,7 +4,7 @@
   theme.name = 'conferences_primer_theme'
   theme.title = 'Conferences Primer theme'
 
-  theme.layout_parts = %w[current_conference_alert]
+  theme.layout_parts = %w[alert github_url]
 
   theme.parts = [{
     name: 'text',
@@ -87,7 +87,7 @@
     part_type: 'Spina::Parts::Repeater',
     parts: %w[name start_date finish_date start_time application_deadline location is_archived description url]
   }, {
-    name: 'current_conference_alert',
+    name: 'alert',
     title: 'Alert',
     part_type: 'Spina::Parts::Text'
   }, {
@@ -286,6 +286,8 @@
   }, {
     name: 'footer',
     label: 'Footer'
+  }, {
+    name: 'journal'
   }]
 
   theme.plugins = %w[conferences journal conferences-blog]

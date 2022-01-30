@@ -2,7 +2,7 @@
   = render(Primer::HeadingComponent.new(tag: :h1)) { current_page.title }
 
   - if content(:text).present?
-    = render(Primer::Markdown.new(mt: 4)) { content.html(:text) }
+    = render(Primer::Markdown.new(mt: 4)) { content.html(:text).to_s }
 
   - if content(:committee_bios).present?
     %ul.mt-4
@@ -38,6 +38,6 @@
                       = render Primer::OcticonComponent.new('link-external')
                       = t(:'.facebook')
               - if committee_bio.content(:bio).present?
-                = render(Primer::Beta::Text.new(tag: :div, color: :muted)) { committee_bio.content.html(:bio) }
+                = render(Primer::Beta::Text.new(tag: :div, color: :muted)) { committee_bio.content.html(:bio).to_s }
   - else
     = render Primer::BlankslateComponent.new(title: t(:'.no_bios'), icon: 'file')

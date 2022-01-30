@@ -1,0 +1,4 @@
+- content_for :flash do
+  - cache current_account do
+    - if current_account.has_content? :alert
+      = render(Primer::FlashComponent.new(full: true, variant: :warning)) { current_account.content(:alert).html_safe }

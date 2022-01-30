@@ -1,17 +1,25 @@
 - cache [footer_navigation_items, current_account] do
-  = render Primer::FlexComponent.new(direction: [:column, nil, :row_reverse, nil], align_items: :center) do
-    = render Primer::FlexComponent.new(direction: [:column, :row, nil, nil], mb: [4, nil, 0, nil], flex: :auto) do
-      - cache footer_navigation_items do
-        %ul.list-style-none.flex-auto.mb-2.mb-sm-0.mr-sm-2
-          - footer_navigation_items.each do |item|
-            - cache item do
-              %li
-                = render Primer::ButtonComponent.new(tag: :a, href: item.materialized_path, variant: :small) { item.menu_title }
-      = render 'footer_content'
+  = render Primer::BoxComponent.new(position: :relative, display: :flex,
+    flex_wrap: :wrap,
+    direction: [:column_reverse, nil, :row, nil],
+    align_items: :center,
+    justify_content: :space_between,
+    mt: 6, pt: 6, pb: 2, mb: 6,
+    font_size: 6, color: :muted, border: :top, border_color: :muted) do
+    %div
+      = render(Primer::Beta::Text.new(tag: :span, color: :muted, mr: [nil, 2, nil, nil], font_size: 6, flex_grow: 0)) do
+        = t :'.copyright', name: current_account.name, year: Date.today.year
+    - cache footer_navigation_items do
+      %ul.list-style-none.d-flex.flex-wrap.flex-1.flex-justify-center.flex-lg-justify-around.mb-2.mb-lg-0
+        - footer_navigation_items.each do |item|
+          - cache item do
+            %li.mr-3.mr-lg-0
+              = render Primer::LinkComponent.new(href: item.materialized_path) do
+                = item.menu_title
+    = render Primer::BoxComponent.new(display: :flex, mb: [2, nil, 0, nil]) do
+      = render 'cookies_footer'
       - if current_account.has_content? :github_url
         = render Primer::ButtonComponent.new(tag: :a, href: current_account.content(:github_url), button_type: :outline, variant: :small,
-                                             display: :inline_block) do
+                                              display: :inline_block, ml: 2) do
           = render Primer::OcticonComponent.new('mark-github')
           = t :'.find_on_github'
-    = render(Primer::Beta::Text.new(tag: :small, color: :muted, mr: [nil, 2, nil, nil], font_size: 6, flex_grow: 0)) do
-      = t :'.copyright', name: current_account.name, year: Date.today.year

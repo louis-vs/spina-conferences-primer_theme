@@ -2,8 +2,8 @@
   = render(Primer::HeadingComponent.new(tag: :h1)) { current_page.title }
 
   - if content(:text).present?
-    = render(Primer::Markdown.new(mt: 4)) { content.html(:text) }
-  
+    = render(Primer::Markdown.new(mt: 4)) { content.html(:text).to_s }
+
   - if content(:periodical_issues).present?
     %ul.mt-4
       - repeater(:periodical_issues) do |issue|
@@ -27,7 +27,7 @@
                       = time_tag issue.content(:date), format: :long_ordinal
               - if issue.content(:description).present?
                 = render Primer::Markdown.new(tag: :div, color: :muted) do
-                  = issue.content.html(:description)
+                  = issue.content.html(:description).to_s
               = render Primer::FlexComponent.new(direction: [:column, nil, :row, nil], align_items: :start) do
                 - if issue.content(:url).present?
                   = render Primer::ButtonComponent.new(scheme: :primary, tag: :a, href: issue.content(:url), mt: 2, mr: 2) do

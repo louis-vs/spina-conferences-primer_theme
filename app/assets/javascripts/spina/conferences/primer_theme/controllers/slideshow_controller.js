@@ -1,5 +1,6 @@
-// eslint-disable-next-line no-unused-vars,no-undef
-class SlideshowController extends Stimulus.Controller {
+import { Controller } from '@hotwired/stimulus'
+
+export default class SlideshowController extends Controller {
   static get targets() {
     return [
       /**
@@ -35,7 +36,7 @@ class SlideshowController extends Stimulus.Controller {
    * @return {Number} The value for the delay.
    */
   get delay() {
-    return this.data.has('delay') 
+    return this.data.has('delay')
       ? Number.parseInt(this.data.get('delay'))
       : 10000
   }
