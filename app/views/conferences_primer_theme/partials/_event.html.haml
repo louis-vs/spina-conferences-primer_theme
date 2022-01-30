@@ -1,5 +1,5 @@
 %li.list-style-none.py-4.border-bottom
-  = render Primer::FlexComponent.new(direction: :column, align_items: :start) do
+  = render Primer::BoxComponent.new(display: :flex, direction: :column, align_items: :flex_start) do
     - if event.content(:name).present?
       = render(Primer::HeadingComponent.new(tag: :h3, flex: :auto)) { event.content(:name) }
     = render Primer::HeadingComponent.new(tag: :h4, flex: :auto) do

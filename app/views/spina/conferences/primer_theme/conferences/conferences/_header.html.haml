@@ -19,9 +19,9 @@
     - if @conference.content(:sponsors).present?
       = render Primer::SubheadComponent.new(spacious: true) do |component|
         = component.heading(tag: :h2) { t :'.sponsors.title' }
-      = render Primer::FlexComponent.new(flex_wrap: true, ml: -2, mr: -2, mt: -2, mb: -2) do
+      = render Primer::BoxComponent.new(display: :flex, flex_wrap: :wrap, ml: -2, mr: -2, mt: -2, mb: -2) do
         - repeater @conference.content(:sponsors) do |sponsor|
-          = render Primer::FlexItemComponent.new(m: 2, vertical_align: :middle) do
+          = render Primer::BoxComponent.new(m: 2, vertical_align: :middle) do
             - if sponsor.content(:logo).present?
               = link_to sponsor.content(:website) do
                 = sponsor.content.image_tag(:logo, { resize_to_limit: [200, 60] }, draggable: false,
@@ -30,7 +30,7 @@
               = render(Primer::LinkComponent.new(href: sponsor.content(:website) || '')) { sponsor.content(:name) }
 
   - if @conference.content(:gallery).present?
-    = render Primer::FlexComponent.new(flex_direction: :column, justify_content: :center, align_items: :center, mb: 4, position: :relative,
+    = render Primer::BoxComponent.new(display: :flex, flex_direction: :column, justify_content: :center, align_items: :center, mb: 4, position: :relative,
                                        data: { controller: :slideshow, slideshow_incrementer: 0, slideshow_advance: true }) do
       - @conference.content(:gallery).each_with_index do |image, index|
         = @conference.content.image_tag(image, { resize_to_fill: [1680, 600] }, draggable: false, data: { 'slideshow-target': 'slide' },

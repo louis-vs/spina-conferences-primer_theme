@@ -1,12 +1,12 @@
-= render(Primer::FlexComponent.new(direction: [:column, nil, :row, nil])) do
-  = render(Primer::FlexComponent.new(direction: :column, flex: :auto)) do
+= render(Primer::BoxComponent.new(display: :flex, direction: [:column, nil, :row, nil])) do
+  = render(Primer::BoxComponent.new(display: :flex, direction: :column, flex: :auto)) do
     = render(Primer::HeadingComponent.new(tag: :h1)) { @journal.name }
     - if @journal.has_content? :description
       = render(Primer::Markdown.new(my: 4)) { @journal.content.html(:description) }
   = render(Primer::BorderBoxComponent.new(ml: [nil, nil, 4, nil], style: 'min-width: 15vw;')) do |sidebar|
     - if @journal.has_content? :logo
       - sidebar.header(bg: :primary) do
-        = render(Primer::FlexItemComponent.new(mb: 4)) do
+        = render(Primer::BoxComponent.new(mb: 4)) do
           - cache @journal.content(:logo) do
             = image_tag main_app.url_for(@journal.content(:logo).variant(resize_to_limit: [300, 150])),
                         srcset: srcset(@journal.content(:logo), variant: { resize_to_limit: [300, 150] }),

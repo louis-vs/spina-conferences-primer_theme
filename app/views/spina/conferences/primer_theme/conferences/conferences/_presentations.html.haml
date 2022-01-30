@@ -1,6 +1,6 @@
 - cache [@conference.presentations, @presentation_type, @presentations, @presentations.collect(&:presenters), @tab] do
-  = render Primer::FlexComponent.new(direction: [:column, nil, nil, :row], my: 4) do
-    = render Primer::FlexItemComponent.new(pr: [nil, nil, nil, 4], mb: [4, nil, nil, 0], col: [12, nil, nil, 3]) do
+  = render Primer::BoxComponent.new(display: :flex, direction: [:column, nil, nil, :row], my: 4) do
+    = render Primer::BoxComponent.new(pr: [nil, nil, nil, 4], mb: [4, nil, nil, 0], col: [12, nil, nil, 3]) do
       %ul.filter-list
         - cache [@conference.presentations, @presentation_type] do
           %li
@@ -10,7 +10,7 @@
               %span.count{ title: t(:'.results') }= @conference.presentations.count
         = render partial: 'presentation_type', collection: @conference.presentation_types.sorted,
                  cached: -> presentation_type { [presentation_type, @presentation_type] }
-    = render Primer::FlexItemComponent.new(col: [12, nil, nil, 9]) do
+    = render Primer::BoxComponent.new(col: [12, nil, nil, 9]) do
       - if @presentations.any?
         %filter-input{ aria: { owns: 'presentation_list' } }
           .subnav.subnav-flush

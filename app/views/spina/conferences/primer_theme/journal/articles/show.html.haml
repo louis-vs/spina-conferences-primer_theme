@@ -3,14 +3,14 @@
 
   = render(Primer::HeadingComponent.new(tag: :h1)) { @article.title }
 
-  = render(Primer::FlexComponent.new(direction: [:column, nil, :row, nil])) do
-    = render(Primer::FlexItemComponent.new(flex_auto: true, mr: [nil, nil, 4, nil])) do
+  = render(Primer::BoxComponent.new(display: :flex, direction: [:column, nil, :row, nil])) do
+    = render(Primer::BoxComponent.new(flex: :auto, mr: [nil, nil, 4, nil])) do
       %ul.list-style-none.d-flex.flex-column.flex-sm-row.my-2
         - @article.affiliations.each do |affiliation|
-          = render(Primer::FlexComponent.new(tag: :li, mr: 4, align_items: :center)) do
-            = render(Primer::FlexItemComponent.new(mr: 2)) do
+          = render(Primer::BoxComponent.new(display: :flex, tag: :li, mr: 4, align_items: :center)) do
+            = render(Primer::BoxComponent.new(mr: 2)) do
               = render(Primer::OcticonComponent.new('person'))
-            = render(Primer::FlexComponent.new(tag: :address, direction: :column)) do
+            = render(Primer::BoxComponent.new(display: :flex, tag: :address, direction: :column)) do
               = render(Primer::Beta::Text.new(tag: :div, font_weight: :bold)) { affiliation.name }
               = render(Primer::Beta::Text.new(tag: :div, color: :muted)) { affiliation.institution.name }
 
@@ -49,7 +49,7 @@
               = render(Primer::Beta::Text.new(tag: :div, color: :muted, mt: 1)) do
                 = link_to nil, @article.url
           - component.row do
-            = render(Primer::FlexComponent.new(direction: :column)) do
+            = render(Primer::BoxComponent.new(display: :flex, direction: :column)) do
               = render(Primer::Beta::Text.new(mb: 2)) do
                 Copyright © #{@article.issue.date.year} #{@article.affiliations.collect(&:name).to_sentence}
               - unless @licence.nil?

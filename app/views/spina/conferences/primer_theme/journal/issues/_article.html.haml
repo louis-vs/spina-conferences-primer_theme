@@ -1,5 +1,5 @@
-= render(Primer::FlexComponent.new(direction: [:column, nil, :row, nil])) do
-  = render(Primer::FlexItemComponent.new(flex_auto: true)) do
+= render(Primer::BoxComponent.new(display: :flex, direction: [:column, nil, :row, nil])) do
+  = render(Primer::BoxComponent.new(flex: :auto)) do
     = render(Primer::HeadingComponent.new(tag: :h3, mb: 1)) do
       = link_to article.title, frontend_issue_article_path(article.issue, article)
     = render(Primer::Beta::Text.new(tag: :div, color: :muted)) do

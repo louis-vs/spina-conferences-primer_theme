@@ -8,16 +8,16 @@
     %ul.mt-4
       - repeater(:periodical_issues) do |issue|
         %li.list-style-none.py-4.border-bottom
-          = render Primer::FlexComponent.new(direction: [:column, nil, :row, nil], align_items: :start) do
+          = render Primer::BoxComponent.new(display: :flex, direction: [:column, nil, :row, nil], align_items: :flex_start) do
             - if issue.content(:cover_img).present?
-              = render Primer::FlexItemComponent.new(mr: [nil, nil, 3, nil], mb: [3, nil, 0, nil], flex_shrink: 0) do
+              = render Primer::BoxComponent.new(mr: [nil, nil, 3, nil], mb: [3, nil, 0, nil], flex_shrink: 0) do
                 = render Primer::LinkComponent.new(href: issue.content(:url)) do
                   = image_tag(issue.content.image_url(:cover_img, resize_to_limit: [300, 300]),
                               srcset: srcset_string(issue.content(:cover_img),
                                                     variant: { resize_to_limit: [300, 300] }),
                               alt: issue.content(:cover_img).alt)
-            = render Primer::FlexItemComponent.new(flex_auto: true) do
-              = render Primer::FlexComponent.new(direction: [:column, nil, :row, nil], mb: 1) do
+            = render Primer::BoxComponent.new(flex: :auto) do
+              = render Primer::BoxComponent.new(display: :flex, direction: [:column, nil, :row, nil], mb: 1) do
                 = render Primer::BoxComponent.new do
                   - if issue.content(:name).present?
                     = render Primer::HeadingComponent.new(tag: :h2) do
@@ -28,7 +28,7 @@
               - if issue.content(:description).present?
                 = render Primer::Markdown.new(tag: :div, color: :muted) do
                   = issue.content.html(:description).to_s
-              = render Primer::FlexComponent.new(direction: [:column, nil, :row, nil], align_items: :start) do
+              = render Primer::BoxComponent.new(display: :flex, direction: [:column, nil, :row, nil], align_items: :flex_start) do
                 - if issue.content(:url).present?
                   = render Primer::ButtonComponent.new(scheme: :primary, tag: :a, href: issue.content(:url), mt: 2, mr: 2) do
                     = render Primer::OcticonComponent.new('link-external')
