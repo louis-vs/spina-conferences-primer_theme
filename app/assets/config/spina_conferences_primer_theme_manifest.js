@@ -1,4 +1,4 @@
-//= link_tree ../builds
+//= link spina/conferences/primer_theme/application.css
 
 //= link_directory ../javascripts/spina/conferences/primer_theme/controllers .js
 //= link spina/conferences/primer_theme/application.js
