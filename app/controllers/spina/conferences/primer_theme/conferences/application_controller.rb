@@ -6,7 +6,7 @@ module Spina
       module Conferences
         # Base class from which controllers inherit
         class ApplicationController < Spina::ApplicationController
-          before_action :journal_accessible?
+          before_action :conferences_accessible?
 
           def cookies_info
             render partial: 'cookies'
@@ -23,7 +23,7 @@ module Spina
             end
           end
 
-          def journal_accessible?
+          def conferences_accessible?
             raise ActiveRecord::RecordNotFound unless current_spina_user.present? || page.live?
           end
         end
