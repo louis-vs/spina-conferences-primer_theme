@@ -56,8 +56,15 @@ export default class SlideshowController extends Controller {
    */
   connect() {
     this.showSlide()
+    this.resetInterval()
+  }
+
+  resetInterval() {
     if (this.data.has('advance')) {
-      setInterval(() => this.next(), this.delay)
+      if (this.intervalId) {
+        clearInterval(this.intervalId)
+      }
+      this.intervalId = setInterval(() => this.next(), this.delay)
     }
   }
 
@@ -74,6 +81,7 @@ export default class SlideshowController extends Controller {
    * @private
    */
   next() {
+    this.resetInterval()
     const incrementer = this.incrementer
     this.incrementer = incrementer === this.slideTargets.length - 1 ? 0 : incrementer + 1
   }
@@ -83,6 +91,7 @@ export default class SlideshowController extends Controller {
    * @private
    */
   previous() {
+    this.resetInterval()
     const incrementer = this.incrementer
     this.incrementer = incrementer === 0 ? this.slideTargets.length - 1 : incrementer - 1
   }
