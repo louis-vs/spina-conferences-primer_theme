@@ -10,9 +10,13 @@ Spina::Engine.routes.draw do
   end
 
   namespace :frontend, path: 'journal', module: 'conferences/primer_theme/journal' do
-    resources :issues, only: %i[index show] do
-      resources :articles, only: %i[show]
+    resources :issues, only: :index
+    resources :volumes, only: [], param: :number do
+      resources :issues, only: :show, param: :number do
+        resources :articles, only: %i[show], param: :number
+      end
     end
+    resources :authors, only: %i[index show]
   end
 
   namespace :frontend, as: 'frontend_blog', path: 'blog', module: 'conferences/primer_theme/blog' do

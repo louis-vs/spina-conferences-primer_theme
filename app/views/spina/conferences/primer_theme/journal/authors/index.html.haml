@@ -1,0 +1,10 @@
+= render(Primer::BoxComponent.new(display: :flex, direction: [:column, nil, nil, :row])) do
+  = render(Primer::BoxComponent.new(col: [nil, nil, nil, 9])) do
+    = render(Primer::HeadingComponent.new(tag: :h1)) do
+      = @journal.name
+    = render(Primer::HeadingComponent.new(tag: :h2, mt: 3)) { t '.authors' }
+    - if @authors.any?
+      %ul= render partial: 'author', collection: @authors, layout: 'list_item', cached: true
+    - else
+      = render Primer::BlankslateComponent.new(title: t(:'.no_authors'), icon: 'mortar-board')
+  = render 'journal_navigation'

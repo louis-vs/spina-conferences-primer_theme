@@ -9,12 +9,12 @@ module Spina
           app.config.importmap.cache_sweepers << Engine.root.join('app/assets/javascripts')
         end
 
-        config.after_initialize do
-          Spina::Part.register(Spina::Parts::Conferences::PrimerTheme::Checkbox)
-        end
-
         config.to_prepare do
           ::Spina::PagesController.helper 'spina/conferences/primer_theme/application'
+        end
+
+        config.after_initialize do
+          Spina::Part.register(Spina::Parts::Conferences::PrimerTheme::Checkbox)
         end
       end
     end

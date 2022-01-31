@@ -8,7 +8,7 @@
     %ul.mt-4
       - repeater(:committee_bios) do |committee_bio|
         %li.list-style-none.py-4.border-bottom
-          = render Primer::FlexComponent.new(direction: [:column, nil, :row, nil], align_items: :start) do
+          = render Primer::BoxComponent.new(display: :flex, direction: [:column, nil, :row, nil], align_items: :flex_start) do
             - if committee_bio.content(:profile_picture).present?
               -# TODO: create helper to replace this, because Primer::Beta::Avatar limits size to 80 sadly
               %img.avatar.circle.mr-md-3.mb-3.mb-md-0.flex-shrink-0{src: committee_bio.content.image_url(:profile_picture, resize_to_fill: [150, 150]),
@@ -16,8 +16,8 @@
                                                                                           variant: { resize_to_fill: [150, 150] }),
                                                                     draggable: false,
                                                                     alt: committee_bio.content(:profile_picture).alt}
-            = render Primer::FlexItemComponent.new(flex_auto: true) do
-              = render Primer::FlexComponent.new(direction: [:column, nil, :row, nil], mb: 1) do
+            = render Primer::BoxComponent.new(flex: :auto) do
+              = render Primer::BoxComponent.new(display: :flex, direction: [:column, nil, :row, nil], mb: 1) do
                 = render Primer::BoxComponent.new do
                   - if committee_bio.content(:name).present?
                     = render(Primer::HeadingComponent.new(tag: :h3)) do

@@ -3,29 +3,23 @@
 
   = render(Primer::HeadingComponent.new(tag: :h1)) { @article.title }
 
-  = render(Primer::FlexComponent.new(direction: [:column, nil, :row, nil])) do
-    = render(Primer::FlexItemComponent.new(flex_auto: true, mr: [nil, nil, 4, nil])) do
+  = render(Primer::BoxComponent.new(display: :flex, direction: [:column, nil, nil, :row])) do
+    = render(Primer::BoxComponent.new(flex: :auto, mr: [nil, nil, nil, 4], col: [nil, nil, nil, 8])) do
       %ul.list-style-none.d-flex.flex-column.flex-sm-row.my-2
-        - @article.affiliations.each do |affiliation|
-          = render(Primer::FlexComponent.new(tag: :li, mr: 4, align_items: :center)) do
-            = render(Primer::FlexItemComponent.new(mr: 2)) do
-              = render(Primer::OcticonComponent.new('person'))
-            = render(Primer::FlexComponent.new(tag: :address, direction: :column)) do
-              = render(Primer::Beta::Text.new(tag: :div, font_weight: :bold)) { affiliation.name }
-              = render(Primer::Beta::Text.new(tag: :div, color: :muted)) { affiliation.institution.name }
+        = render partial: 'authorship', collection: @article.authorships.sorted_within_article
 
       - if @article.has_content?(:abstract)
         = render(Primer::HeadingComponent.new(tag: :h2, mt: 4, font_size: 3)) { t '.abstract' }
-        = render(Primer::Markdown.new) { @article.content.html(:abstract) }
+        = render(Primer::Markdown.new) { @article.content.html(:abstract).to_s }
 
-    = render(Primer::BorderBoxComponent.new(ml: [nil, nil, 4, nil], style: 'min-width: 20vw')) do |sidebar|
+    = render(Primer::BorderBoxComponent.new(ml: [nil, nil, nil, 4], col: [nil, nil, nil, 4])) do |sidebar|
       - sidebar.body do
         - if @article.issue.has_content?(:cover_img)
           = render partial: 'spina/conferences/primer_theme/journal/issues/issue_cover', locals: { issue: @article.issue, cover_img: @article.issue.content(:cover_img), size: [200, 400] }
         = render(Primer::BorderBoxComponent.new) do |component|
           - if @article.has_content?(:attachment)
             - component.row do
-              = render(Primer::ButtonComponent.new(tag: :a, href: frontend_issue_article_path(@issue, @article, format: :pdf), download: '', scheme: :primary)) do
+              = render(Primer::ButtonComponent.new(tag: :a, href: frontend_volume_issue_article_path(@issue.volume.number, @issue.number, @article.number, format: :pdf), download: '', scheme: :primary)) do
                 = render Primer::OcticonComponent.new('download')
                 = t '.download'
           - component.row do
@@ -37,7 +31,7 @@
             = render(Primer::Beta::Text.new) do
               = link_to t('spina.conferences.primer_theme.journal.volume_issue',
                           volume_number: @article.issue.volume.number,
-                          issue_number: @article.issue.number), frontend_issue_path(@article.issue)
+                          issue_number: @article.issue.number), frontend_volume_issue_path(@article.issue.volume.number, @article.issue.number)
           - unless @article.doi.blank?
             - component.row do
               = render(Primer::HeadingComponent.new(tag: :h2, font_size: 4, color: :muted)) { t '.doi' }
@@ -49,7 +43,11 @@
               = render(Primer::Beta::Text.new(tag: :div, color: :muted, mt: 1)) do
                 = link_to nil, @article.url
           - component.row do
-            = render(Primer::FlexComponent.new(direction: :column)) do
+            = render(Primer::HeadingComponent.new(tag: :h2, font_size: 4, color: :muted)) { t '.permalink' }
+            = render(Primer::Beta::Text.new(tag: :div, color: :muted, mt: 1)) do
+              = link_to nil, frontend_volume_issue_article_url(@volume.number, @issue.number, @article.number)
+          - component.row do
+            = render(Primer::BoxComponent.new(display: :flex, direction: :column)) do
               = render(Primer::Beta::Text.new(mb: 2)) do
                 Copyright © #{@article.issue.date.year} #{@article.affiliations.collect(&:name).to_sentence}
               - unless @licence.nil?

@@ -1,7 +1,7 @@
-= render Primer::FlexComponent.new(direction: [:column, nil, :row_reverse, nil]) do
+= render Primer::BoxComponent.new(display: :flex, direction: [:column, nil, :row_reverse, nil]) do
   %ul.list-style-none.d-flex.flex-wrap.flex-md-justify-end.pl-md-2.pb-2.pb-md-0
     = render partial: 'institution', collection: conference.institutions, cached: -> institution { [institution, institution.logo] }
-  = render Primer::FlexItemComponent.new(flex_auto: true) do
+  = render Primer::BoxComponent.new(flex: :auto) do
     = render(Primer::HeadingComponent.new(tag: :h3, mb: 1)) { link_to conference.name, frontend_conference_path(conference) }
     %ul.text-secondary.list-style-none.d-flex.flex-column.flex-sm-row.flex-wrap
       %li.mr-sm-3

@@ -1,6 +1,8 @@
-= render(Primer::FlexComponent.new(tag: :li, mr: 4, align_items: :center)) do
-  = render(Primer::FlexItemComponent.new(mr: 2)) do
-    = render(Primer::OcticonComponent.new('person'))
-  = render(Primer::FlexComponent.new(tag: :address, direction: :column)) do
-    = render(Primer::Beta::Text.new(tag: :div, font_weight: :bold)) { authorship.affiliation.name }
-    = render(Primer::Beta::Text.new(tag: :div, color: :muted)) { authorship.affiliation.institution.name }
+%li
+  = link_to frontend_author_path(authorship.affiliation.author) do
+    = render(Primer::BoxComponent.new(display: :flex, tag: :li, mr: 4, align_items: :center)) do
+      = render(Primer::BoxComponent.new(mr: 2)) do
+        = render(Primer::OcticonComponent.new('person'))
+      = render(Primer::BoxComponent.new(display: :flex, tag: :address, direction: :column)) do
+        = render(Primer::Beta::Text.new(tag: :div, font_weight: :bold)) { authorship.affiliation.name }
+        = render(Primer::Beta::Text.new(tag: :div, color: :muted)) { authorship.affiliation.institution.name }

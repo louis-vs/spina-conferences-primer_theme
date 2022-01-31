@@ -1,27 +1,37 @@
 - cache [@issue, @issue.volume, @issue.articles, @issue.content(:cover_img), @issue.content(:description)] do
-  - cache [@issue, @issue.volume] do
-    = render(Primer::HeadingComponent.new(tag: :h1)) do
-      = t('spina.conferences.primer_theme.journal.volume_issue',
-          volume_number: @issue.volume.number,
-          issue_number: @issue.number)
+  = render(Primer::BoxComponent.new(display: :flex, direction: [:column, nil, nil, :row])) do
+    = render(Primer::BoxComponent.new(mr: [nil, nil, nil, 4], col: [nil, nil, nil, 8])) do
+      - cache [@issue, @issue.volume] do
+        = render(Primer::HeadingComponent.new(tag: :h1)) do
+          = t('spina.conferences.primer_theme.journal.volume_issue',
+              volume_number: @issue.volume.number,
+              issue_number: @issue.number)
 
-    - unless @issue.title.blank?
-      = render(Primer::HeadingComponent.new(tag: :h2, color: :muted, mb: 2)) { @issue.title }
+        - unless @issue.title.blank?
+          = render(Primer::HeadingComponent.new(tag: :h2, color: :muted, mb: 2)) { @issue.title }
 
-  - if @issue.has_content?(:cover_img)
-    = render partial: 'issue_cover', locals: { issue: @issue, cover_img: @issue.content(:cover_img), size: [300, 600] }
+      - if @issue.has_content?(:description)
+        = render(Primer::Markdown.new(my: 4)) do
+          = @issue.content.html(:description).to_s
 
-  - if @issue.has_content?(:description)
-    = render(Primer::Markdown.new(my: 4)) do
-      = @issue.content.html(:description)
 
-  - if @issue.has_content?(:attachment)
-    = render(Primer::ButtonComponent.new(tag: :a, scheme: :primary, href: main_app.url_for(@issue.content(:attachment)), my: 2, download: '')) do
-      = render Primer::OcticonComponent.new('download')
-      = t '.download'
+      %div#journal-articles-list.border-top
+        - if @articles.any?
+          %ul= render partial: 'article', collection: @articles.sorted_asc, layout: 'list_item', cached: true
+        - else
+          = render Primer::BlankslateComponent.new(title: t(:'.no_articles'), icon: 'mortar-board')
 
-  %div#journal-articles-list.border-top
-    - if @articles.any?
-      %ul= render partial: 'article', collection: @articles.sorted_asc, layout: 'list_item', cached: true
-    - else
-      = render Primer::BlankslateComponent.new(title: t(:'.no_articles'), icon: 'mortar-board')
+    = render(Primer::BorderBoxComponent.new(ml: [nil, nil, nil, 4], col: [nil, nil, nil, 4])) do |sidebar|
+      - sidebar.body do
+        - if @issue.has_content?(:cover_img)
+          = render partial: 'spina/conferences/primer_theme/journal/issues/issue_cover', locals: { issue: @issue, cover_img: @issue.content(:cover_img), size: [300, 600] }
+        = render(Primer::BorderBoxComponent.new) do |component|
+          - component.row do
+            = render(Primer::HeadingComponent.new(tag: :h2, font_size: 4, color: :muted)) { t '.published' }
+            = render(Primer::Beta::Text.new) do
+              = time_tag @issue.date, format: :long
+          - if @issue.has_content?(:attachment)
+            - component.row do
+              = render(Primer::ButtonComponent.new(tag: :a, scheme: :primary, href: main_app.url_for(@issue.content(:attachment)), my: 2, download: '')) do
+                = render Primer::OcticonComponent.new('download')
+                = t '.download'

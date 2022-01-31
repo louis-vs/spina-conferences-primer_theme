@@ -1,0 +1,17 @@
+- cache [current_page, journal_navigation_items] do
+  = render Primer::MenuComponent.new(ml: [0, nil, nil, 4], mt: [4, 0, nil, nil], col: [nil, nil, nil, 3]) do |component|
+    - component.heading(tag: :h2) do
+      = Spina::Admin::Journal::Journal.instance.name
+
+    - component.item(selected: controller_name == 'issues', href: frontend_issues_path) do
+      = t '.issues'
+    - component.item(selected: controller_name == 'authors', href: frontend_authors_path) do
+      = t '.authors'
+
+    - journal_navigation_items.each do |page|
+      - component.item(selected: page == current_page, href: page.materialized_path) do
+        = page.menu_title
+      - if page.children&.in_menu.live.any?
+        - page.children.in_menu.live.sorted.each do |sub_page|
+          - component.item(selected: sub_page == current_page, href: sub_page.materialized_path, pl: 5) do
+            = sub_page.menu_title

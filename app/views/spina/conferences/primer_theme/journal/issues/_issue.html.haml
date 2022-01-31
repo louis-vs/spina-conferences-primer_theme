@@ -1,12 +1,13 @@
-= render(Primer::FlexComponent.new(direction: [:column, nil, :row, nil])) do
+= render(Primer::BoxComponent.new(display: :flex, direction: [:column, nil, :row, nil])) do
   - if issue.content(:cover_img).present?
-    = render(Primer::FlexItemComponent.new(mr: 4)) do
-      = render partial: 'issue_cover', locals: { issue: issue, cover_img: issue.content(:cover_img), size: [150, 300] }
-  = render(Primer::FlexItemComponent.new(flex_auto: true)) do
+    = render(Primer::BoxComponent.new(mr: 4)) do
+      = link_to frontend_volume_issue_path(issue.volume.number, issue.number) do
+        = render partial: 'issue_cover', locals: { issue: issue, cover_img: issue.content(:cover_img), size: [150, 300] }
+  = render(Primer::BoxComponent.new(flex: :auto)) do
     = render(Primer::HeadingComponent.new(tag: :h3, mb: 1)) do
       = link_to t('spina.conferences.primer_theme.journal.volume_issue',
                   volume_number: issue.volume.number,
-                  issue_number: issue.number), frontend_issue_path(issue)
+                  issue_number: issue.number), frontend_volume_issue_path(issue.volume.number, issue.number)
     - unless issue.title.blank?
       = render(Primer::HeadingComponent.new(tag: :h4, color: :muted, mb: 1)) do
         = issue.title
@@ -14,4 +15,4 @@
       = time_tag issue.date, format: :long
     - if issue.has_content?(:description)
       = render(Primer::Beta::Text.new(tag: :div, color: :muted, mt: 2)) do
-        = issue.content.html(:description)
+        = issue.content.html(:description).to_s
