@@ -7,7 +7,7 @@ module Spina
         # User-facing controller for journal issues
         class IssuesController < ApplicationController
           before_action :set_journal
-          before_action :set_volume, :set_issue, :set_breadcrumb, only: :show
+          before_action :set_volume, :set_issue, only: :show
           before_action :set_metadata
 
           def index
