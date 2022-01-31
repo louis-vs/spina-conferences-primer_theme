@@ -1,0 +1,10 @@
+- cache [current_page, journal_navigation_items] do
+  = render Primer::BoxComponent.new(display: :flex, direction: [:column, nil, nil, :row]) do
+    - cache current_page do
+      = render Primer::BoxComponent.new(col: 9) do
+        = render(Primer::HeadingComponent.new(tag: :h1)) { current_page.title }
+
+        - if content(:text).present?
+          = render(Primer::Markdown.new(mt: 4)) { content.html(:text).to_s }
+
+    = render 'journal_navigation'
