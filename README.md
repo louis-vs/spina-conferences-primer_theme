@@ -34,6 +34,12 @@ Or install it yourself as:
 $ gem install spina-conferences-primer_theme-fork
 ```
 
+The first thing you will probably want to do is add three pages using the 'blank' template, and add
+forwarding URLs as follows:
+* Conferences to `/conferences/conferences`
+* Journal to `/journal/issues`
+* Blog to `/blog`
+
 ## Contributing
 Contributions welcome, open an issue first please.
 
