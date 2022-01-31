@@ -8,7 +8,7 @@
   - if @article.has_content? :attachment
     %meta{ name: 'DC.Format', scheme: 'IMT', content: 'application/pdf' }
   %meta{ name: 'DC.Identifier', content: @article.id }
-  %meta{ name: 'DC.Identifier.URI', content: frontend_issue_article_url(@issue.id, @article.id) }
+  %meta{ name: 'DC.Identifier.URI', content: frontend_volume_issue_article_url(@volume.number, @issue.number, @article.number) }
   - if @article.has_content? :page_range
     %meta{ name: 'DC.Identifier.pageNumber', content: "#{@article.content(:page_range).first_page}-#{@article.content(:page_range).last_page}" }
   %meta{ name: 'DC.Language', scheme: 'ISO639-1', content: 'en' }
@@ -37,5 +37,5 @@
   - if @article.has_content? :page_range
     %meta{ name: 'citation_firstpage', content: @article.content(:page_range).first_page }
     %meta{ name: 'citation_lastpage', content: @article.content(:page_range).last_page }
-  %meta{ name: 'citation_abstract_html_url', content: frontend_issue_article_url(@issue.id, @article.id) }
-  %meta{ name: 'citation_pdf_url', content: frontend_issue_article_url(@issue.id, @article.id) + '.pdf' }
+  %meta{ name: 'citation_abstract_html_url', content: frontend_volume_issue_article_url(@volume.number, @issue.number, @article.number) }
+  %meta{ name: 'citation_pdf_url', content: frontend_volume_issue_article_url(@volume.number, @issue.number, @article.number) + '.pdf' }

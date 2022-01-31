@@ -77,7 +77,7 @@ module Spina
 
           test 'view an issue' do
             issue = spina_admin_journal_issues(:vol1_issue1)
-            get frontend_issue_path(issue)
+            get frontend_volume_issue_path(issue.volume.number, issue.number)
             assert_response :success
             assert_select 'main' do
               assert_select 'h1', text: I18n.t('spina.conferences.primer_theme.journal.volume_issue',

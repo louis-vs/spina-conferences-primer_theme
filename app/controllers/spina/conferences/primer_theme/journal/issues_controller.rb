@@ -7,7 +7,7 @@ module Spina
         # User-facing controller for journal issues
         class IssuesController < ApplicationController
           before_action :set_journal
-          before_action :set_issue, :set_breadcrumb, only: :show
+          before_action :set_volume, :set_issue, :set_breadcrumb, only: :show
           before_action :set_metadata
 
           def index
@@ -33,7 +33,13 @@ module Spina
           end
 
           def set_issue
-            @issue = Admin::Journal::Issue.includes(:volume, :articles).find(params[:id])
+            @issue = @volume.issues.includes(:volume, :articles).find_by!(number: params[:number])
+          rescue ActiveRecord::RecordNotFound
+            send_file Rails.root.join('public/404.html'), type: 'text/html; charset=utf-8', status: 404
+          end
+
+          def set_volume
+            @volume = Admin::Journal::Volume.includes(:issues).find_by!(number: params[:volume_number])
           rescue ActiveRecord::RecordNotFound
             send_file Rails.root.join('public/404.html'), type: 'text/html; charset=utf-8', status: 404
           end

@@ -6,7 +6,7 @@ module Spina
       module Journal
         # User-facing controller for journal articles
         class ArticlesController < ApplicationController
-          before_action :set_article, :set_issue, :set_journal, :set_licence, :set_breadcrumb, :set_metadata,
+          before_action :set_volume, :set_issue, :set_article, :set_journal, :set_licence, :set_breadcrumb, :set_metadata,
                         :require_admin_for_invisible_article
 
           def show
@@ -25,13 +25,19 @@ module Spina
           private
 
           def set_article
-            @article = Admin::Journal::Article.includes(affiliations: [:institution]).find(params[:id])
+            @article = @issue.articles.includes(affiliations: [:institution]).find_by!(number: params[:number])
           rescue ActiveRecord::RecordNotFound
             send_file Rails.root.join('public/404.html'), type: 'text/html; charset=utf-8', status: 404
           end
 
           def set_issue
-            @issue = Admin::Journal::Issue.includes(:volume, :articles).find(params[:issue_id])
+            @issue = @volume.issues.includes(:volume, :articles).find_by!(number: params[:issue_number])
+          rescue ActiveRecord::RecordNotFound
+            send_file Rails.root.join('public/404.html'), type: 'text/html; charset=utf-8', status: 404
+          end
+
+          def set_volume
+            @volume = Admin::Journal::Volume.includes(:issues).find_by!(number: params[:volume_number])
           rescue ActiveRecord::RecordNotFound
             send_file Rails.root.join('public/404.html'), type: 'text/html; charset=utf-8', status: 404
           end
@@ -51,7 +57,7 @@ module Spina
             # add_breadcrumb Admin::Journal::Issue.model_name.human.pluralize, frontend_issues_path
             add_breadcrumb t('spina.conferences.primer_theme.journal.volume_issue', volume_number: @issue.volume.number,
                                                                                     issue_number: @issue.number),
-                           frontend_issue_path(@issue.id)
+                           frontend_volume_issue_path(@issue.volume.number, @issue.number)
           end
 
           def set_metadata

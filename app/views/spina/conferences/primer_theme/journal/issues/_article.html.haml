@@ -1,7 +1,7 @@
 = render(Primer::BoxComponent.new(display: :flex, direction: [:column, nil, :row, nil])) do
   = render(Primer::BoxComponent.new(flex: :auto)) do
     = render(Primer::HeadingComponent.new(tag: :h3, mb: 1)) do
-      = link_to article.title, frontend_issue_article_path(article.issue, article)
+      = link_to article.title, frontend_volume_issue_article_path(article.issue.volume.number, article.issue.number, article.number)
     = render(Primer::Beta::Text.new(tag: :div, color: :muted)) do
       = render(Primer::OcticonComponent.new(article.affiliations.many? ? 'people' : 'person'))
       = render(Primer::BaseComponent.new(tag: :address, display: :inline)) do
@@ -10,6 +10,6 @@
       = render(Primer::Beta::Text.new(tag: :div, color: :muted)) do
         = link_to nil, article.doi
     - if article.has_content?(:attachment)
-      = render(Primer::ButtonComponent.new(tag: :a, href: frontend_issue_article_path(article.issue, article, format: :pdf), mt: 2, download: '')) do
+      = render(Primer::ButtonComponent.new(tag: :a, href: frontend_volume_issue_article_path(article.issue.volume.number, article.issue.number, article.number, format: :pdf), mt: 2, download: '')) do
         = render Primer::OcticonComponent.new('download')
         = t '.download'
