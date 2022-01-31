@@ -26,7 +26,7 @@ module Spina
         end
 
         def live_resource_navigation_items(name)
-          ::Spina::Resource.find_by(name: name).pages.roots.in_menu.live.sorted
+          ::Spina::Resource.find_by(name: name)&.pages&.roots&.in_menu&.live&.sorted || []
         end
       end
     end

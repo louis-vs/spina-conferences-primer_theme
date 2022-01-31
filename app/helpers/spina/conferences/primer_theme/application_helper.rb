@@ -13,7 +13,7 @@ module Spina
         end
 
         def journal_abbreviation_or_name(journal)
-          journal.content(:journal_abbreviation).empty? ? journal.name : journal.content(:journal_abbreviation)
+          journal.content(:journal_abbreviation)&.empty? ? journal.name : journal.content(:journal_abbreviation)
         end
 
         def ancestors # rubocop:disable Metrics/AbcSize,Metrics/MethodLength
