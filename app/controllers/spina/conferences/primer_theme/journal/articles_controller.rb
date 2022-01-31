@@ -47,8 +47,8 @@ module Spina
           def set_breadcrumb
             return if @issue.blank?
 
-            add_breadcrumb @journal.name, frontend_issues_path
-            add_breadcrumb Admin::Journal::Issue.model_name.human.pluralize, frontend_issues_path
+            add_breadcrumb helpers.journal_abbreviation_or_name(@journal), frontend_issues_path
+            # add_breadcrumb Admin::Journal::Issue.model_name.human.pluralize, frontend_issues_path
             add_breadcrumb t('spina.conferences.primer_theme.journal.volume_issue', volume_number: @issue.volume.number,
                                                                                     issue_number: @issue.number),
                            frontend_issue_path(@issue.id)

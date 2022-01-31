@@ -1,5 +1,5 @@
 - content_for :breadcrumbs do
-  - if current_page.ancestors.any?
+  - if current_page.ancestors.any? || current_page.resource&.name == 'journal'
     = ancestors
 
 = render template: 'layouts/spina/conferences/primer_theme/application',

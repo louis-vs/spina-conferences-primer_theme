@@ -12,10 +12,19 @@ module Spina
           Spina::Admin::Conferences::Conference.order(dates: :asc).find_by('upper(dates) >= ?', Time.zone.today)
         end
 
+        def journal_abbreviation_or_name(journal)
+          journal.content(:journal_abbreviation).empty? ? journal.name : journal.content(:journal_abbreviation)
+        end
+
         def ancestors
           return [] if current_page.blank?
 
           render Primer::Beta::Breadcrumbs.new(mb: 4) do |component|
+            if current_page.resource&.name = 'journal'
+              component.item(href: frontend_issues_path) do
+                journal_abbreviation_or_name(Spina::Admin::Journal::Journal.instance)
+              end
+            end
             current_page.ancestors.each do |ancestor|
               component.item(href: ancestor.materialized_path) { ancestor.menu_title }
             end

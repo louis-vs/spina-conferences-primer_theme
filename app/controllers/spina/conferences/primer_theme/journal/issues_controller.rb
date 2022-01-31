@@ -39,8 +39,8 @@ module Spina
           end
 
           def set_breadcrumb
-            add_breadcrumb @journal.name, frontend_issues_path
-            add_breadcrumb Admin::Journal::Issue.model_name.human.pluralize, frontend_issues_path
+            add_breadcrumb helpers.journal_abbreviation_or_name(@journal), frontend_issues_path
+            # add_breadcrumb Admin::Journal::Issue.model_name.human.pluralize, frontend_issues_path
           end
 
           def set_metadata
