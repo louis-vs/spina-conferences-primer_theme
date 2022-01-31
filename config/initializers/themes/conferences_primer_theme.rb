@@ -236,6 +236,11 @@
     description: 'Contains general information',
     parts: %w[text]
   }, {
+    name: 'journal_information',
+    title: 'Information (Journal)',
+    description: 'An information page specifically for the journal section',
+    parts: %w[text]
+  }, {
     name: 'committee',
     title: 'Committee',
     description: 'Contains committee bios',
@@ -286,8 +291,13 @@
   }, {
     name: 'footer',
     label: 'Footer'
-  }, {
-    name: 'journal'
+  }]
+
+  theme.resources = [{
+    name: 'journal',
+    label: 'Journal',
+    slug: 'journal',
+    view_template: 'journal_information'
   }]
 
   theme.plugins = %w[conferences journal conferences-blog]
