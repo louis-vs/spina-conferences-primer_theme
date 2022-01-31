@@ -162,6 +162,7 @@ en:
               download: PDF
               doi: DOI
               url: URL
+              permalink: Permalink
               abstract: Abstract
               published: Published
               issue: Issue
