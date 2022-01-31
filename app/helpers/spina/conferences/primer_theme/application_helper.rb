@@ -16,7 +16,7 @@ module Spina
           journal.content(:journal_abbreviation).empty? ? journal.name : journal.content(:journal_abbreviation)
         end
 
-        def ancestors
+        def ancestors # rubocop:disable Metrics/AbcSize,Metrics/MethodLength
           return [] if current_page.blank?
 
           render Primer::Beta::Breadcrumbs.new(mb: 4) do |component|
