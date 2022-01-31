@@ -3,9 +3,10 @@
     - component.heading(tag: :h2) do
       = Spina::Admin::Journal::Journal.instance.name
 
-    - component.item(selected: controller_name == 'issues',
-                     href: frontend_issues_path) do
+    - component.item(selected: controller_name == 'issues', href: frontend_issues_path) do
       = t '.issues'
+    - component.item(selected: controller_name == 'authors', href: frontend_authors_path) do
+      = t '.authors'
 
     - journal_navigation_items.each do |page|
       - component.item(selected: page == current_page, href: page.materialized_path) do

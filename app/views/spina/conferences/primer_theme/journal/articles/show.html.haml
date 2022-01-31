@@ -6,13 +6,7 @@
   = render(Primer::BoxComponent.new(display: :flex, direction: [:column, nil, nil, :row])) do
     = render(Primer::BoxComponent.new(flex: :auto, mr: [nil, nil, nil, 4], col: [nil, nil, nil, 8])) do
       %ul.list-style-none.d-flex.flex-column.flex-sm-row.my-2
-        - @article.affiliations.each do |affiliation|
-          = render(Primer::BoxComponent.new(display: :flex, tag: :li, mr: 4, align_items: :center)) do
-            = render(Primer::BoxComponent.new(mr: 2)) do
-              = render(Primer::OcticonComponent.new('person'))
-            = render(Primer::BoxComponent.new(display: :flex, tag: :address, direction: :column)) do
-              = render(Primer::Beta::Text.new(tag: :div, font_weight: :bold)) { affiliation.name }
-              = render(Primer::Beta::Text.new(tag: :div, color: :muted)) { affiliation.institution.name }
+        = render partial: 'authorship', collection: @article.authorships.sorted_within_article
 
       - if @article.has_content?(:abstract)
         = render(Primer::HeadingComponent.new(tag: :h2, mt: 4, font_size: 3)) { t '.abstract' }

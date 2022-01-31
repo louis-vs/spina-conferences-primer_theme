@@ -1,0 +1,9 @@
+= render(Primer::BoxComponent.new(display: :flex, direction: [:column, nil, :row, nil], align_items: [:flex_start, nil, nil, :center])) do
+  = render(Primer::BoxComponent.new(mr: 2)) do
+    = render(Primer::OcticonComponent.new('person'))
+  = render(Primer::BoxComponent.new(flex: :auto)) do
+    = link_to frontend_author_path(author) do
+      = render(Primer::HeadingComponent.new(tag: :h3, mb: 1)) do
+        = author.primary_affiliation.name
+      = render(Primer::HeadingComponent.new(tag: :h4, color: :muted, mb: 1)) do
+        = author.primary_affiliation.institution.name

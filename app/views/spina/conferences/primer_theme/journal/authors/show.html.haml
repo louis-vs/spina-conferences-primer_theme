@@ -1,0 +1,20 @@
+= render(Primer::BoxComponent.new(display: :flex, direction: [:column, nil, nil, :row])) do
+  = render(Primer::BoxComponent.new(col: [nil, nil, nil, 9])) do
+    = render(Primer::HeadingComponent.new(tag: :h1)) do
+      = @journal.name
+    = render(Primer::HeadingComponent.new(tag: :h2, mt: 2)) do
+      = t '.name_institution', name: @author.primary_affiliation.name, institution: @author.primary_affiliation.institution.name
+    - if @author.affiliations.count > 1
+      = render(Primer::BoxComponent.new) do
+        = render(Primer::Beta::Text.new) do
+          = t '.aka'
+          = @author.affiliations.not_primary.map { |affiliation| t('.name_institution', name: affiliation.name, institution: affiliation.institution.name) }.join(', ')
+
+    = render(Primer::HeadingComponent.new(tag: :h3, mt: 3)) { t '.articles' }
+
+    - if @author.articles.any?
+      %ul= render partial: 'spina/conferences/primer_theme/journal/issues/article', collection: @author.articles.sorted_asc, layout: 'list_item', cached: true
+    - else
+      = render Primer::BlankslateComponent.new(title: t(:'.no_articles'), icon: 'mortar-board')
+
+  = render 'journal_navigation'

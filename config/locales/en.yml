@@ -71,7 +71,8 @@ en:
         cookies: About cookies
         loading: Loading…
       journal_navigation:
-        issues: View all issues
+        issues: View issues
+        authors: View authors
 
     conferences:
       primer_theme:
@@ -168,6 +169,16 @@ en:
               issue: Issue
               draft: THIS ARTICLE IS A DRAFT
               licence_logo: Licence logo
+          authors:
+            index:
+              authors: Authors
+              no_authors: This journal has no authors.
+            show:
+              authors: Authors
+              articles: Articles
+              aka: "Also known as:"
+              name_institution: "%{name} (%{institution})"
+
         blog:
           posts:
             index:

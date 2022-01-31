@@ -16,6 +16,7 @@ Spina::Engine.routes.draw do
         resources :articles, only: %i[show], param: :number
       end
     end
+    resources :authors, only: %i[index show]
   end
 
   namespace :frontend, as: 'frontend_blog', path: 'blog', module: 'conferences/primer_theme/blog' do
