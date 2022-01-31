@@ -1,7 +1,7 @@
 = render(Primer::BoxComponent.new(display: :flex, direction: [:column, nil, :row, nil])) do
   - if issue.content(:cover_img).present?
     = render(Primer::BoxComponent.new(mr: 4)) do
-      = link_to frontend_issue_path do
+      = link_to frontend_issue_path(issue) do
         = render partial: 'issue_cover', locals: { issue: issue, cover_img: issue.content(:cover_img), size: [150, 300] }
   = render(Primer::BoxComponent.new(flex: :auto)) do
     = render(Primer::HeadingComponent.new(tag: :h3, mb: 1)) do

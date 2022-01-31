@@ -3,8 +3,8 @@
 
   = render(Primer::HeadingComponent.new(tag: :h1)) { @article.title }
 
-  = render(Primer::BoxComponent.new(display: :flex, direction: [:column, nil, :row, nil])) do
-    = render(Primer::BoxComponent.new(flex: :auto, mr: [nil, nil, 4, nil])) do
+  = render(Primer::BoxComponent.new(display: :flex, direction: [:column, nil, nil, :row])) do
+    = render(Primer::BoxComponent.new(flex: :auto, mr: [nil, nil, nil, 4], col: [nil, nil, nil, 8])) do
       %ul.list-style-none.d-flex.flex-column.flex-sm-row.my-2
         - @article.affiliations.each do |affiliation|
           = render(Primer::BoxComponent.new(display: :flex, tag: :li, mr: 4, align_items: :center)) do
@@ -18,7 +18,7 @@
         = render(Primer::HeadingComponent.new(tag: :h2, mt: 4, font_size: 3)) { t '.abstract' }
         = render(Primer::Markdown.new) { @article.content.html(:abstract).to_s }
 
-    = render(Primer::BorderBoxComponent.new(ml: [nil, nil, 4, nil], style: 'min-width: 20vw')) do |sidebar|
+    = render(Primer::BorderBoxComponent.new(ml: [nil, nil, nil, 4], col: [nil, nil, nil, 4])) do |sidebar|
       - sidebar.body do
         - if @article.issue.has_content?(:cover_img)
           = render partial: 'spina/conferences/primer_theme/journal/issues/issue_cover', locals: { issue: @article.issue, cover_img: @article.issue.content(:cover_img), size: [200, 400] }
