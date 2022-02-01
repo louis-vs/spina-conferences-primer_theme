@@ -7,7 +7,6 @@ module Spina
         # Spina::Blog::PostsController
         class PostsController < ApplicationController
           before_action :find_posts, only: [:index]
-          before_action :current_spina_user_can_view_page?
           before_action :set_breadcrumb, only: :show
 
           decorates_assigned :posts, :post
@@ -51,14 +50,6 @@ module Spina
             start_date.end_of_year
           end
 
-          def page
-            @page ||= Spina::Page.find_or_create_by name: 'blog' do |page|
-              page.title = 'Blog'
-              page.link_url = '/blog'
-              page.deletable = false
-            end
-          end
-
           def find_posts
             @posts = Spina::Admin::Conferences::Blog::Post.available.live.order(published_at: :desc)
                                                           .page(params[:page])
@@ -67,10 +58,6 @@ module Spina
           def try_redirect
             rule = RewriteRule.find_by!(old_path: "/blog/posts/#{params[:id]}")
             redirect_to rule.new_path, status: :moved_permanently
-          end
-
-          def current_spina_user_can_view_page?
-            raise ActiveRecord::RecordNotFound unless current_spina_user.present? || page.live?
           end
 
           def set_breadcrumb

@@ -8,6 +8,8 @@ module Spina
         class ApplicationController < ::Spina::ApplicationController
           include ::Spina::Frontend
 
+          before_action :page
+
           def cookies_info
             render partial: 'cookies'
           end
@@ -16,6 +18,14 @@ module Spina
 
           def theme_layout
             'layouts/spina/conferences/primer_theme/blog/blog'
+          end
+
+          def page
+            @page = Spina::Page.find_or_create_by name: 'blog' do |page|
+              page.title = 'Blog'
+              page.link_url = '/blog'
+              page.deletable = false
+            end
           end
         end
       end

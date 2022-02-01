@@ -6,7 +6,7 @@ module Spina
       module Journal
         # Base class from which controllers related to the journal plugin inherit
         class ApplicationController < Spina::ApplicationController
-          before_action :journal_accessible?
+          before_action :page
 
           private
 
@@ -16,10 +16,6 @@ module Spina
               page.link_url = '/journal/issues'
               page.deletable = false
             end
-          end
-
-          def journal_accessible?
-            raise ActiveRecord::RecordNotFound unless current_spina_user.present? || page.live?
           end
         end
       end

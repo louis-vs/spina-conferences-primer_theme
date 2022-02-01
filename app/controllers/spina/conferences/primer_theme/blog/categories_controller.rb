@@ -6,7 +6,6 @@ module Spina
       module Blog
         # Spina::Blog::CategoriesController
         class CategoriesController < ApplicationController
-          before_action :page
           before_action :category
           before_action :posts
           before_action :set_breadcrumb, only: :show
@@ -26,13 +25,6 @@ module Spina
           def posts
             @posts = @category.posts.available.live.order(published_at: :desc)
                               .page(params[:page])
-          end
-
-          def page
-            @page = Spina::Page.find_or_create_by name: 'blog' do |page|
-              page.link_url = '/blog'
-              page.deletable = false
-            end
           end
 
           def set_breadcrumb
