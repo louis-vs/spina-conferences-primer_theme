@@ -19,7 +19,6 @@ module Spina
               page.title = 'Conferences'
               page.link_url = '/conferences/conferences'
               page.deletable = false
-              page.view_template = 'blank'
             end
           end
 
