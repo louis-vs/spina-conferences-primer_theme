@@ -1,4 +1,4 @@
-- cache [current_page, journal_navigation_items] do
+- cache [current_page, controller_name, journal_navigation_items] do
   = render Primer::MenuComponent.new(ml: [0, nil, nil, 4], mt: [4, 0, nil, nil], col: [nil, nil, nil, 3]) do |component|
     - component.heading(tag: :h2) do
       = Spina::Admin::Journal::Journal.instance.name
