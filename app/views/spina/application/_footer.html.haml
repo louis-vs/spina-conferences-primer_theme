@@ -1,4 +1,4 @@
-- cache [footer_navigation_items, current_account] do
+- cache [all_navigation_items, current_account] do
   = render Primer::BoxComponent.new(position: :relative, display: :flex,
     flex_wrap: :wrap,
     direction: [:column_reverse, nil, :row, nil],
@@ -9,7 +9,7 @@
     %div
       = render(Primer::Beta::Text.new(tag: :span, color: :muted, mr: [nil, 2, nil, nil], font_size: 6, flex_grow: 0)) do
         = t :'.copyright', name: current_account.name, year: Date.today.year
-    - cache footer_navigation_items do
+    - cache all_navigation_items do
       %ul.list-style-none.d-flex.flex-wrap.flex-1.flex-justify-center.flex-lg-justify-around.mb-2.mb-lg-0
         - footer_navigation_items.each do |item|
           - cache item do

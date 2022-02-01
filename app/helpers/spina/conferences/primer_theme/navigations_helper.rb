@@ -17,6 +17,11 @@ module Spina
           @journal_navigation_items ||= live_resource_navigation_items('journal')
         end
 
+        # Use this for caching, since pages are not touched when navigation position is updated.
+        def all_navigation_items
+          @all_navigation_items ||= ::Spina::NavigationItem.all
+        end
+
         private
 
         def live_navigation_items(name)
