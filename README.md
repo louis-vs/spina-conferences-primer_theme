@@ -23,11 +23,7 @@ The plugin's main goal is to provide frontends for Spina core and the three plug
 
 ## Usage
 
-See the READMEs for the conference plugin, the journal plugin, and the blog plugin, respectively, for more information on what kind of content this frontend allows you to create and how to do so within the admin interface. Also make sure to ensure correct compilation of the assets for this gem by adding the following line to your `manifest.js` file.
-
-```js
-//= link spina_conferences_primer_theme_manifest.js
-```
+See the READMEs for the conference plugin, the journal plugin, and the blog plugin, respectively, for more information on what kind of content this frontend allows you to create and how to do so within the admin interface.
 
 You can customise Primer by overriding the `_custom.sass` and `_custom_variables.sass` files. See the [ULAB Website](https://github.com/ulab-committee/ulab-website) repo for an example.
 
@@ -48,6 +44,18 @@ And then execute:
 $ bundle
 ```
 
+You will also need to configure Yarn. Add this repo as a dependency, so that your `package.json` resembles the following:
+
+```json
+{
+  "name": "website_name",
+  "private": true,
+  "dependencies": {
+    "spina-conferences-primer-theme-fork": "louis-vs/spina-conferences-primer_theme-fork"
+  }
+}
+```
+
 You will then need to install and run the migrations from all of the plugins that come bundled with PrimerTheme:
 
 ```bash
@@ -58,11 +66,19 @@ $ bin/rails spina_conferences_primer_theme:install:migrations
 $ bin/rails db:migrate
 ```
 
+Also make sure to ensure compilation of the assets for this gem by adding the following line to your `manifest.js` file.
+
+```js
+//= link spina_conferences_primer_theme_manifest.js
+```
+
 Finally, start the server with:
 
 ```bash
 $ bin/rails s
 ```
+
+If you want to customise Primer, you will need to add `_custom.sass` and/or `_custom_variables.sass` into `app/assets/stylesheets/spina/conferences/primer_theme`. You will also need to override the CSS build rake task so that it finds your new files - an example of this can be found in the ULAB website [here](https://github.com/ulab-committee/ulab-website/blob/master/lib/tasks/ulab_website_tasks.rake).
 
 ## Contributing
 
