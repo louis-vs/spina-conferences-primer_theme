@@ -20,7 +20,9 @@
           - repeater(events) do |event|
             = render 'conferences_primer_theme/partials/event', event: event
       - else
-        = render Primer::BlankslateComponent.new(title: t(:'.no_events'), icon: 'calendar')
+        = render Primer::Beta::Blankslate.new do |blankslate|
+          - blankslate.visual_icon(icon: 'calendar')
+          - blankslate.heading(tag: :h3).with_content(t(:'.no_events'))
 
 
     = render Primer::SubheadComponent.new(mt: 4) do |component|
@@ -38,6 +40,10 @@
           - repeater(events) do |event|
             = render 'conferences_primer_theme/partials/event', event: event
       - else
-        = render Primer::BlankslateComponent.new(title: t(:'.no_events'), icon: 'calendar')
+        = render Primer::Beta::Blankslate.new do |blankslate|
+          - blankslate.visual_icon(icon: 'calendar')
+          - blankslate.heading(tag: :h3).with_content(t(:'.no_events'))
   - else
-    = render Primer::BlankslateComponent.new(title: t(:'.no_events'), icon: 'calendar')
+    = render Primer::Beta::Blankslate.new do |blankslate|
+      - blankslate.visual_icon(icon: 'calendar')
+      - blankslate.heading(tag: :h3).with_content(t(:'.no_events'))

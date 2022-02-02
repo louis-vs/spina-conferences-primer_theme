@@ -18,6 +18,9 @@
       = render partial: 'conference', collection: @conferences, layout: 'list_item',
                cached: -> conference { [conference, conference.institutions, conference.institutions.collect(&:logo)] }
   - else
-    = render Primer::BlankslateComponent.new(title: t(:'.no_conferences'), icon: 'mortar-board')
-  = render Primer::BlankslateComponent.new(title: t(:'.no_matching_conferences'), icon: 'mortar-board', hidden: true,
-                                           data: { 'filter-empty-state': true })
+    = render Primer::Beta::Blankslate.new do |blankslate|
+      - blankslate.visual_icon(icon: 'mortar-board')
+      - blankslate.heading(tag: :h3).with_content(t(:'.no_conferences'))
+  = render Primer::Beta::Blankslate.new(data: { 'filter-empty-state': true }) do |blankslate|
+    - blankslate.visual_icon(icon: 'mortar-board')
+    - blankslate.heading(tag: :h3).with_content(t(:'.no_matching_conferences'))

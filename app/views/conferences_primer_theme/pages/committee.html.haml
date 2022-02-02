@@ -40,4 +40,6 @@
               - if committee_bio.content(:bio).present?
                 = render(Primer::Beta::Text.new(tag: :div, color: :muted)) { committee_bio.content.html(:bio).to_s }
   - else
-    = render Primer::BlankslateComponent.new(title: t(:'.no_bios'), icon: 'file')
+    = render Primer::Beta::Blankslate.new do |blankslate|
+      - blankslate.visual_icon(icon: 'file')
+      - blankslate.heading(tag: :h3).with_content(t(:'.no_bios'))

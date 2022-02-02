@@ -6,5 +6,7 @@
     - if @authors.any?
       %ul= render partial: 'author', collection: @authors, layout: 'list_item', cached: true
     - else
-      = render Primer::BlankslateComponent.new(title: t(:'.no_authors'), icon: 'mortar-board')
+      = render Primer::Beta::Blankslate.new do |blankslate|
+        - blankslate.visual_icon(icon: 'mortar-board')
+        - blankslate.heading(tag: :h3).with_content(t(:'.no_authors'))
   = render 'journal_navigation'
