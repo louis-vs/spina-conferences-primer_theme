@@ -15,6 +15,7 @@ module Spina
               page.title = 'Journal'
               page.link_url = '/journal/issues'
               page.deletable = false
+              page.active = true
             end
           end
         end

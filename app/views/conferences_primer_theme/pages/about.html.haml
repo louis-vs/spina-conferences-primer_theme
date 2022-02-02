@@ -21,7 +21,9 @@
             = render Primer::OcticonComponent.new('desktop-download')
             = t :'.constitution.download'
       - else
-        = render Primer::BlankslateComponent.new(title: t(:'.constitution.no_constitution'), icon: 'law')
+        = render Primer::Beta::Blankslate.new do |blankslate|
+          - blankslate.visual_icon(icon: 'law')
+          - blankslate.heading(tag: :h3).with_content(t(:'.constitution.no_constitution'))
 
     = render Primer::BoxComponent.new(mt: 4, col: [12, nil, 6, nil], float: [nil, nil, :left, nil]) do
       = render Primer::SubheadComponent.new do |component|
@@ -43,7 +45,9 @@
               - else
                 = render(Primer::Beta::Text.new(color: :muted, font_size: 6)) { t :'.minutes.no_file' }
       - else
-        = render Primer::BlankslateComponent.new(title: t(:'.minutes.no_minutes'), icon: 'file')
+        = render Primer::Beta::Blankslate.new do |blankslate|
+          - blankslate.visual_icon(icon: 'file')
+          - blankslate.heading(tag: :h3).with_content(t(:'.minutes.no_minutes'))
 
     = render Primer::BoxComponent.new(mt: 4, col: [12, nil, 6, nil], float: [nil, nil, :left, nil]) do
       - if content(:documents).present?
@@ -89,4 +93,6 @@
                                                   srcset: srcset(partner_society.content(:logo), variant: { resize_to_limit: [200, 150] }),
                                                   class: %w[mt-4 mt-md-0 mr-md-4])
   - else
-    = render Primer::BlankslateComponent.new(title: t(:'.partner_societies.no_societies'), icon: 'organization')
+    = render Primer::Beta::Blankslate.new do |blankslate|
+      - blankslate.visual_icon(icon: 'organization')
+      - blankslate.heading(tag: :h3).with_content(t(:'.partner_societies.no_societies'))

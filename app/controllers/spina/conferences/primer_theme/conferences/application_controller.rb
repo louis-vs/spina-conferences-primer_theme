@@ -19,6 +19,7 @@ module Spina
               page.title = 'Conferences'
               page.link_url = '/conferences/conferences'
               page.deletable = false
+              page.active = true
             end
           end
         end

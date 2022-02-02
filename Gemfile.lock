@@ -11,7 +11,7 @@ PATH
       spina (~> 2.8)
       spina-admin-conferences-blog (= 0.3.1)
       spina-admin-conferences-fork (= 3.0.0.rc2)
-      spina-admin-journal (= 1.0.0.rc2)
+      spina-admin-journal (= 1.0.0.rc3)
 
 GEM
   remote: https://rubygems.org/
@@ -219,7 +219,7 @@ GEM
     parallel (1.21.0)
     parser (3.1.0.0)
       ast (~> 2.4.1)
-    pg (1.3.0)
+    pg (1.3.1)
     primer_view_components (0.0.67)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
@@ -264,7 +264,7 @@ GEM
       zeitwerk (~> 2.5)
     rainbow (3.1.1)
     rake (13.0.6)
-    redis (4.5.1)
+    redis (4.6.0)
     regexp_parser (2.2.0)
     request_store (1.5.1)
       rack (>= 1.4)
@@ -340,7 +340,7 @@ GEM
       rails-i18n (>= 6.0, < 8)
       redis (~> 4.2)
       spina (~> 2.8)
-    spina-admin-journal (1.0.0.rc2)
+    spina-admin-journal (1.0.0.rc3)
       haml-rails (~> 2.0)
       rails (>= 6.0, < 8)
       rails-i18n (>= 6.0, < 8)

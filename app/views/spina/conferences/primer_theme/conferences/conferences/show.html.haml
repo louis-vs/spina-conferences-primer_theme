@@ -25,7 +25,9 @@
         - if @conference.content(:text).present?
           = render(Primer::Markdown.new(my: 4)) { @conference.content.html(:text).to_s }
         - else
-          = render Primer::BlankslateComponent.new(title: t(:'.no_information'), icon: 'info', my: 4)
+          = render Primer::Beta::Blankslate.new(my: 4) do |blankslate|
+            - blankslate.visual_icon(icon: 'info')
+            - blankslate.heading(tag: :h3).with_content(t(:'.no_information'))
     - when 'presentations'
       - cache [@conference.presentations, @presentation_type, @presentations, @presentations.collect(&:presenters), @tab] do
         = render partial: 'presentations'
@@ -33,5 +35,7 @@
       - cache [@conference.events, @tab] do
         = render partial: 'events', locals: { events: @conference.events }
     - else
-      = render Primer::BlankslateComponent.new(title: t('.no_tab'), description: t('.tab_does_not_exist', tab: @tab), icon: 'x-circle',
-                                               my: 4)
+      = render Primer::Beta::Blankslate.new(my: 4) do |blankslate|
+        - blankslate.visual_icon(icon: 'x-circle')
+        - blankslate.heading(tag: :h3).with_content(t(:'.no_tab'))
+        - blankslate.description { t('.tab_does_not_exist', tab: @tab) }
