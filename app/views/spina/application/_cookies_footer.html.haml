@@ -10,5 +10,6 @@
             = button_tag(data: { 'close-dialog': true }, aria: { label: t(:'spina.close') }, type: 'button',
                         class: %w[Box-btn-octicon btn-octicon m-0 position-absolute right-0 top-0]) do
               = render Primer::OcticonComponent.new('x')
-            = render Primer::BlankslateComponent.new(title: t('.loading')) do |blankslate_component|
-              = blankslate_component.spinner(size: :large)
+            = render Primer::Beta::Blankslate.new(title: t('.loading')) do |blankslate_component|
+              = blankslate_component.visual_spinner(size: :large)
+              = blankslate_component.heading(tag: :h2).with_content(t('.loading'))
