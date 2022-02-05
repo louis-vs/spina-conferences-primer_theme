@@ -21,6 +21,6 @@
     = render Primer::Beta::Blankslate.new do |blankslate|
       - blankslate.visual_icon(icon: 'mortar-board')
       - blankslate.heading(tag: :h3).with_content(t(:'.no_conferences'))
-  = render Primer::Beta::Blankslate.new(data: { 'filter-empty-state': true }) do |blankslate|
+  = render Primer::Beta::Blankslate.new(data: { 'filter-empty-state': true }, hidden: true) do |blankslate|
     - blankslate.visual_icon(icon: 'mortar-board')
     - blankslate.heading(tag: :h3).with_content(t(:'.no_matching_conferences'))
