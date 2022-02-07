@@ -28,8 +28,8 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'rails', '~> 7.0'
   spec.add_dependency 'spina', '~> 2.8'
   spec.add_dependency 'spina-admin-conferences-blog', '0.3.1'
-  spec.add_dependency 'spina-admin-conferences-fork', '3.0.0.rc2'
-  spec.add_dependency 'spina-admin-journal', '1.0.0.rc3'
+  spec.add_dependency 'spina-admin-conferences-fork', '3.0.0.rc3'
+  spec.add_dependency 'spina-admin-journal', '~> 1.0'
 
   spec.add_development_dependency 'capybara', '~> 3.33'
   spec.add_development_dependency 'dotenv-rails', '~> 2.7'
