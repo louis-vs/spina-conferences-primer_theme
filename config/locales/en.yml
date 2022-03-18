@@ -96,6 +96,11 @@ en:
               tab_does_not_exist: "The tab '%{tab}' does not exist."
               no_information: No information.
               conference_navigation: Conference content
+              documents:
+                title: Downloads
+                download: Download
+                no_file: No file uploaded.
+                no_name: Untitled
             presentations:
               all_presentation_types: All
               results: Results
