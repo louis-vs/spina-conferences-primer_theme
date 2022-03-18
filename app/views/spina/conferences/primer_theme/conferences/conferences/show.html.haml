@@ -3,7 +3,7 @@
 
 - content_for(:header) { render 'header' }
 
-= turbo_frame_tag 'conference_tabs' do
+= turbo_frame_tag 'conference_tabs', target: '_top' do
   = render Primer::Alpha::UnderlineNav.new(tag: :div, label: t(:'.conference_navigation')) do |component|
     - component.tab(href: frontend_conference_path(@conference, tab: 'information', presentation_type: @presentation_type&.id),
                     selected: (@tab == 'information'), id: 'information') do
@@ -22,6 +22,30 @@
   - case @tab
     - when 'information'
       - cache [@conference, @tab] do
+        = render Primer::BoxComponent.new(mt: 4,
+                                          col: [12, nil, 5, nil],
+                                          float: [nil, nil, :right, nil],
+                                          border: true,
+                                          border_radius: 3,
+                                          p: 3) do
+          - if @conference.content(:documents).present?
+            = render Primer::SubheadComponent.new do |component|
+              = component.heading { t :'.documents.title' }
+            %ul
+              - repeater @conference.content(:documents) do |document|
+                %li.list-style-none.py-1.d-flex.flex-items-center
+                  = render Primer::BoxComponent.new(flex: :auto) do
+                    - if document.content(:name).present?
+                      = document.content(:name)
+                    - else
+                      = t(:'.documents.no_name')
+                  - if document.content(:attachment).present?
+                    = render Primer::ButtonComponent.new(tag: :a, ml: 2, href: document.content.attachment_url(:attachment),
+                                                         download: '') do
+                      = render Primer::OcticonComponent.new('desktop-download')
+                      = t(:'.documents.download')
+                  - else
+                    = render(Primer::Beta::Text.new(color: :muted, font_size: 6)) { t :'.documents.no_file' }
         - if @conference.content(:text).present?
           = render(Primer::Markdown.new(my: 4)) { @conference.content.html(:text).to_s }
         - else
