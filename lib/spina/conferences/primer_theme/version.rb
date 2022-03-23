@@ -3,7 +3,7 @@
 module Spina
   module Conferences
     module PrimerTheme
-      VERSION = '1.0.0.rc6'
+      VERSION = '1.0.0'
     end
   end
 end
