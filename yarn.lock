@@ -128,12 +128,12 @@
   resolved "https://registry.yarnpkg.com/@github/include-fragment-element/-/include-fragment-element-6.0.0.tgz#d374e7c89916276df358b634e2e88fb6f7ca25ef"
   integrity sha512-Z51I/vLZwx8vu+YhzMJ9M37//3G1uAc9Uf60GxHMBgx3bH+Rly6DxjB8QcqmmDstmmpTL6Uv5ynbMgYYDuQl5Q==
 
-"@primer/css@^19.2.0":
-  version "19.2.0"
-  resolved "https://registry.yarnpkg.com/@primer/css/-/css-19.2.0.tgz#afd1821c46da5a1c675f8e74a38fa566434c868b"
-  integrity sha512-20fJIGZy/s+LqDfqR1qqGS34LZTg3co4XbeL+Lv45LBqsVQ+ULwURNU6y3JBb78THLbish9V4TccPw59dj1YOQ==
+"@primer/css@^19.6.0":
+  version "19.6.0"
+  resolved "https://registry.yarnpkg.com/@primer/css/-/css-19.6.0.tgz#a7a29d5ce677ac0e9ff90f72dc9dda976554730f"
+  integrity sha512-6EO/t3z3kfE7epY5xaq1QMTmGCFu2+f2CtHncNFsiJDcYrrvGDRPekcN09Hr8OcqhNVxP6xiqKwR0Vi8u4vdQQ==
   dependencies:
-    "@primer/primitives" "^7.4.0"
+    "@primer/primitives" "^7.5.1"
 
 "@primer/octicons@^17.0.0":
   version "17.0.0"
@@ -142,10 +142,10 @@
   dependencies:
     object-assign "^4.1.1"
 
-"@primer/primitives@^7.4.0":
-  version "7.4.1"
-  resolved "https://registry.yarnpkg.com/@primer/primitives/-/primitives-7.4.1.tgz#5ab1af3b078bb6b7b158ac84a1ae8a07fbdd3f95"
-  integrity sha512-cos7zQ6tgTtbQzF1gymiuQPcccqkHpccQCaahMRdqHqJP7kiG9/lbq+u13UdrAFJ8iJEyORfHXKd+bwhQf4svw==
+"@primer/primitives@^7.5.1":
+  version "7.6.0"
+  resolved "https://registry.yarnpkg.com/@primer/primitives/-/primitives-7.6.0.tgz#942efe38b6e09bf6d0351c045436e628e32c3ddb"
+  integrity sha512-cu28QLjectVf2rT4P7m6zS9v4g4yHtErRuPfsgEWEJhbXVIII6vDBm6elJzYixGpTNxpVtSUNezxUXv16l1ejQ==
 
 acorn-jsx@^5.3.1:
   version "5.3.1"
