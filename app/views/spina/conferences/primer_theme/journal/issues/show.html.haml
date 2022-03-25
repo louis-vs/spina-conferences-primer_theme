@@ -26,7 +26,7 @@
     = render(Primer::BorderBoxComponent.new(ml: [nil, nil, nil, 4], col: [nil, nil, nil, 4])) do |sidebar|
       - sidebar.body do
         - if @issue.has_content?(:cover_img)
-          = render partial: 'spina/conferences/primer_theme/journal/issues/issue_cover', locals: { issue: @issue, cover_img: @issue.content(:cover_img), size: [300, 600] }
+          .mb-2= render partial: 'spina/conferences/primer_theme/journal/issues/issue_cover', locals: { issue: @issue, cover_img: @issue.content(:cover_img), size: [200, 400] }
         = render(Primer::BorderBoxComponent.new) do |component|
           - component.row do
             = render(Primer::HeadingComponent.new(tag: :h2, font_size: 4, color: :muted)) { t '.published' }
