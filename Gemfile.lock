@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    spina-conferences-primer_theme-fork (1.0.1)
+    spina-conferences-primer_theme-fork (1.0.2)
       babel-transpiler (~> 0.7)
       cssbundling-rails (~> 1.0)
       icalendar (~> 2.5)
