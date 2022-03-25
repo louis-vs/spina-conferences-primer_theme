@@ -128,10 +128,10 @@
   resolved "https://registry.yarnpkg.com/@github/include-fragment-element/-/include-fragment-element-6.0.0.tgz#d374e7c89916276df358b634e2e88fb6f7ca25ef"
   integrity sha512-Z51I/vLZwx8vu+YhzMJ9M37//3G1uAc9Uf60GxHMBgx3bH+Rly6DxjB8QcqmmDstmmpTL6Uv5ynbMgYYDuQl5Q==
 
-"@primer/css@^19.6.0":
-  version "19.6.0"
-  resolved "https://registry.yarnpkg.com/@primer/css/-/css-19.6.0.tgz#a7a29d5ce677ac0e9ff90f72dc9dda976554730f"
-  integrity sha512-6EO/t3z3kfE7epY5xaq1QMTmGCFu2+f2CtHncNFsiJDcYrrvGDRPekcN09Hr8OcqhNVxP6xiqKwR0Vi8u4vdQQ==
+"@primer/css@^19.7.0":
+  version "19.7.0"
+  resolved "https://registry.yarnpkg.com/@primer/css/-/css-19.7.0.tgz#f1cfe25c366bda5adc1fb5fda797db0d8e4026c2"
+  integrity sha512-+VRm7taPN8vdxSyHibmE9UB4XCVmANcO5ikuk5biSVwatBYBEhd852ZbgGRfip2gN+3BxDu4QFlVsTphm9ZpUA==
   dependencies:
     "@primer/primitives" "^7.5.1"
 
