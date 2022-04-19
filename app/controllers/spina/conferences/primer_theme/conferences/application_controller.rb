@@ -15,12 +15,13 @@ module Spina
           private
 
           def page
-            @page ||= Spina::Page.find_or_create_by name: 'conferences' do |page|
+            @page ||= Spina::Page.find_or_create_by(name: 'conferences') do |page|
               page.title = 'Conferences'
               page.link_url = '/conferences/conferences'
               page.deletable = false
               page.active = true
             end
+            @page.update(active: true)
           end
         end
       end

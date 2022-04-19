@@ -17,6 +17,7 @@ module Spina
               page.deletable = false
               page.active = true
             end
+            @page.update(active: true)
           end
         end
       end

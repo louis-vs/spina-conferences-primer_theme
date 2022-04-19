@@ -26,6 +26,7 @@ module Spina
               page.link_url = '/blog'
               page.deletable = false
             end
+            @page.update(active: true)
           end
         end
       end
