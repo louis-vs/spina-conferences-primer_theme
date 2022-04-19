@@ -24,7 +24,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'cssbundling-rails', '~> 1.0'
   spec.add_dependency 'icalendar', '~> 2.5'
   spec.add_dependency 'image_processing', '~> 1.9'
-  spec.add_dependency 'primer_view_components', '0.0.69'
+  spec.add_dependency 'primer_view_components', '0.0.71'
   spec.add_dependency 'rails', '~> 7.0'
   spec.add_dependency 'spina', '~> 2.8'
   spec.add_dependency 'spina-admin-conferences-blog', '0.3.1'
