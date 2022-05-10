@@ -8,7 +8,7 @@ PATH
       image_processing (~> 1.9)
       primer_view_components (= 0.0.69)
       rails (~> 7.0)
-      spina (~> 2.8)
+      spina (~> 2.8, >= 2.8)
       spina-admin-conferences-blog (= 0.3.1)
       spina-admin-conferences-fork (= 3.0.0)
       spina-admin-journal (~> 1.0)
