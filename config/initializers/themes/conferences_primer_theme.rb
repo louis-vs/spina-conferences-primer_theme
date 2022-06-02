@@ -82,6 +82,11 @@
     part_type: 'Spina::Parts::Repeater',
     parts: %w[name website logo]
   }, {
+    name: 'advisory_board',
+    title: 'Advisory Board',
+    part_type: 'Spina::Parts::Repeater',
+    parts: %w[name position email_address website facebook_profile twitter_profile profile_picture]
+  }, {
     name: 'events_list',
     title: 'Events',
     part_type: 'Spina::Parts::Repeater',
@@ -241,10 +246,20 @@
     description: 'An information page specifically for the journal section',
     parts: %w[text]
   }, {
+    name: 'magazine_information',
+    title: 'Information (Magazine)',
+    description: 'An information page specifically for the magazine section',
+    parts: %w[text]
+  }, {
     name: 'committee',
     title: 'Committee',
     description: 'Contains committee bios',
     parts: %w[text committee_bios]
+  }, {
+    name: 'advisory_board',
+    title: 'Advisory Board',
+    description: 'Contains the list of journal advisory board',
+    parts: %w[text advisory_board]
   }, {
     name: 'about',
     title: 'About',
@@ -298,6 +313,16 @@
     label: 'Journal',
     slug: 'journal',
     view_template: 'journal_information'
+  }, {
+    name: 'magazine',
+    label: 'Magazine',
+    slug: 'magazine',
+    view_template: 'magazine_information'
+  }, {
+    name: 'newsletter',
+    label: 'Newsletter',
+    slug: 'newsletter',
+    view_template: 'newsletter_information'
   }]
 
   theme.plugins = %w[conferences journal conferences-blog]
