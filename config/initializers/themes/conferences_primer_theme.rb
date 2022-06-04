@@ -82,10 +82,10 @@
     part_type: 'Spina::Parts::Repeater',
     parts: %w[name website logo]
   }, {
-    name: 'advisory_board',
-    title: 'Advisory Board',
+    name: 'advisory_board_members',
+    title: 'Advisory Board Members',
     part_type: 'Spina::Parts::Repeater',
-    parts: %w[name position email_address website facebook_profile twitter_profile profile_picture]
+    parts: %w[name institution email_address website facebook_profile twitter_profile profile_picture]
   }, {
     name: 'events_list',
     title: 'Events',
@@ -258,8 +258,8 @@
   }, {
     name: 'advisory_board',
     title: 'Advisory Board',
-    description: 'Contains the list of journal advisory board',
-    parts: %w[text advisory_board]
+    description: 'Contains details of Journal advisory board',
+    parts: %w[text advisory_board_members]
   }, {
     name: 'about',
     title: 'About',
@@ -318,11 +318,6 @@
     label: 'Magazine',
     slug: 'magazine',
     view_template: 'magazine_information'
-  }, {
-    name: 'newsletter',
-    label: 'Newsletter',
-    slug: 'newsletter',
-    view_template: 'newsletter_information'
   }]
 
   theme.plugins = %w[conferences journal conferences-blog]
