@@ -28,7 +28,7 @@
     "@github/include-fragment-element": "^6.0.1",
     "@primer/css": "^19.7.0",
     "@primer/octicons": "^17.2.0",
-    "sass": "^1.51.0"
+    "sass": "^1.54.9"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.3",
