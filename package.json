@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@github/details-dialog-element": "^3.1.3",
-    "@github/details-menu-element": "^1.0.12",
+    "@github/details-menu-element": "^1.0.13",
     "@github/filter-input-element": "^0.1.1",
     "@github/include-fragment-element": "^6.0.1",
     "@primer/css": "^19.7.0",
