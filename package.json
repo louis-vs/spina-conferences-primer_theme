@@ -27,7 +27,7 @@
     "@github/filter-input-element": "^0.1.1",
     "@github/include-fragment-element": "^6.0.1",
     "@primer/css": "^19.7.0",
-    "@primer/octicons": "^17.2.0",
+    "@primer/octicons": "^17.8.0",
     "sass": "^1.51.0"
   },
   "devDependencies": {
